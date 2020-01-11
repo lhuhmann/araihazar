@@ -1,13 +1,18 @@
 #%% package imports
 import pandas as pd
 import os
+import numpy as np
+import datetime
 
 #%% file imports
-# bring in tables
+# people data
 age = pd.read_csv(os.path.abspath("ingest/data_cleaning/age.csv"))
 urine_as = pd.read_csv(os.path.abspath("ingest/data_cleaning/baseline_urine_as.csv"))
 sex = pd.read_csv(os.path.abspath("ingest/data_cleaning/sex.csv"))
 well = pd.read_csv(os.path.abspath("ingest/data_cleaning/subject_well_mapping.csv"))
+interview_date = pd.read_csv(os.path.abspath("ingest/data_cleaning/interview_dates.csv"))
+
+# well data
 all_wells = pd.read_csv(os.path.abspath("ingest/data/wells.csv"))
 
 #%% 
@@ -30,13 +35,25 @@ people = pd.merge(left=people, right=age, left_on='SubjectID', right_on='Subject
 people = people.drop(['Subject'], axis=1)
 # left join with sex table
 people = pd.merge(left=people, right=sex, on='SubjectID', how='left')
+# left join with interview date table
+people = pd.merge(left=people, right=interview_date, on='SubjectID', how='left')
+
+# flag if knew well As
+people['knew_well_arsenic'] = False
+for i, row in people.iterrows():    
+    if ((datetime.datetime.strptime(row['DateInt'], '%Y-%m-%d') < datetime.datetime(2001, 1, 1)) 
+       or (row['Index well'] > 5000)):
+        knew_well_as = False
+    else:
+        knew_well_as = True
+    people.at[i,'knew_well_arsenic'] = knew_well_as
 
 # replace sex markers with something more meaningful
 people['Sex'] = people['Sex'].map({1: 'male', 2: 'female'})
 #make well id int type
 people = people.astype({'Index well': int})
 #reorder columns
-people = people[['SubjectID', 'Sex', 'Age','Index well', 'UrineAs', 'UrineCreat', 'UrAsgmCr']]
+people = people[['SubjectID', 'Sex', 'Age','Index well', 'UrineAs', 'UrineCreat', 'UrAsgmCr', 'knew_well_arsenic']]
 print(people.head(5))
 
 people.to_csv(os.path.abspath("ingest/data/people.csv"), index=False)
