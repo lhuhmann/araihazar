@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 pandas = "*"
+numpy = "*"
+statsmodels = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.6"
