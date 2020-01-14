@@ -6,9 +6,9 @@ CREATE TABLE wells
   union_name character varying(50),
   village character varying(50),
   owner_name character varying(50),
-  arsenic_ugL float,
-  latitude float,
-  longitude float,
+  arsenic_ugL float NOT NULL,
+  latitude float NOT NULL,
+  longitude float NOT NULL,
   depth float,
   year integer
 );

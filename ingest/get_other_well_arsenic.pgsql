@@ -1,8 +1,12 @@
 ALTER TABLE wells
 ADD COLUMN other_as_50m float,
-ADD COLUMN other_as_hyp_beyond_20 float,
-ADD COLUMN other_as_exp float,
-ADD COLUMN other_as_exp_dist_round float
+ADD COLUMN other_as_40m float,
+ADD COLUMN other_as_30m float,
+--ADD COLUMN other_as_hyp_beyond_20 float,
+--ADD COLUMN other_as_exp float,
+--ADD COLUMN other_as_exp_dist_round float
+ADD COLUMN other_as_exp_beyond_50 float,
+ADD COLUMN other_as_exp_beyond_40 float,
 ADD COLUMN other_as_exp_beyond_30 float;
 
 --assume person drinks equally from all wells within 50 m
@@ -23,11 +27,11 @@ WHERE wells.well_id = other_as_table.well1_id
 WITH other_as_table (well1_id, other_as) AS (
     SELECT well1_id, SUM(well2_arsenic_ugl*(1/distance_m))/SUM(1/distance_m)
     FROM well_distances
-    WHERE distance_m > 20
+    WHERE distance_m > 50
     GROUP BY well1_id
 )
 UPDATE wells
-SET other_as_hyp_beyond_20 = other_as_table.other_as
+SET other_as_hyp_beyond_50 = other_as_table.other_as
 FROM other_as_table
 WHERE wells.well_id = other_as_table.well1_id
 
