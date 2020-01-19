@@ -9,6 +9,9 @@ import scipy.stats as stats
 from matplotlib.offsetbox import AnchoredText
 from statsmodels.sandbox.regression.predstd import wls_prediction_std
 
+#%% define parameters
+# pick which column to use for neighbor well arsenic
+neighbor_well_as = "other_as_50m"
 #%% file imports
 
 # people data
@@ -55,14 +58,14 @@ def simple_regress(data, group_name):
 #%% add wells in family compound
 def two_slope_regress(data, group_name):
     # need to add a column of ones to the x-data to get a constant term in the model
-    x = sm.add_constant(pd.concat([data.arsenic_ugl, data.other_as_50m], axis=1))
+    x = sm.add_constant(pd.concat([data.arsenic_ugl, data[neighbor_well_as]], axis=1))
 
     model = sm.OLS(data.urine_as, x)
     results = model.fit()
     print(results.summary())
 
     urine_as_pred = results.params[1]*data.arsenic_ugl + \
-                    results.params[2]*data.other_as_50m + \
+                    results.params[2]*data[neighbor_well_as] + \
                     results.params[0]
 
     fig, ax = plt.subplots(figsize=(8,6))
@@ -82,8 +85,8 @@ def two_slope_regress(data, group_name):
     fig, ax = plt.subplots(figsize=(8,6))
     ax.set_xlabel(r'Average Arsenic of Wells within 50 m ($\mu g/L$)', fontsize=16)
     ax = format_scatter_plot(ax)
-    ax.scatter(data.other_as_50m, data.urine_as, marker='o', s=5, c='k', alpha=.2, edgecolors='none')
-    ax.scatter(data.other_as_50m, urine_as_pred, marker='o', s=5, c='r', edgecolors='none')
+    ax.scatter(data[neighbor_well_as], data.urine_as, marker='o', s=5, c='k', alpha=.2, edgecolors='none')
+    ax.scatter(data[neighbor_well_as], urine_as_pred, marker='o', s=5, c='r', edgecolors='none')
     ax.set_xlim([0,350])
     ax.xaxis.set_ticks([0, 50, 100, 150, 200, 250, 300, 350])
     ax.add_artist(AnchoredText(r'$R^2 = ' + str(round(results.rsquared, 3)) + \
@@ -150,7 +153,7 @@ def get_sem(data, colname, first_index, last_index):
 
 def add_values(data, binned_data, first_index, last_index):
     val_dict = {}
-    for colname in ['arsenic_ugl', 'other_as_50m', 'urine_as', 'urine_as_pred_simple', 
+    for colname in ['arsenic_ugl', neighbor_well_as, 'urine_as', 'urine_as_pred_simple', 
                        'urine_as_pred_multiple']:
         val_dict[colname + '_mean'] = get_average(data, colname, first_index, last_index)
         val_dict[colname + '_sem'] = get_sem(data, colname, first_index, last_index)
@@ -206,7 +209,7 @@ plot_binned(subset_binned_data, 'subset', 'arsenic_ugl', 'urine_as_pred_simple',
             400, 400, 'Primary Household Well Arsenic')
 plot_binned(subset_binned_data, 'subset', 'arsenic_ugl', 'urine_as_pred_multiple', 
             400, 400, 'Primary Household Well Arsenic')
-plot_binned(subset_binned_data, 'subset', 'other_as_50m', 'urine_as_pred_multiple',
+plot_binned(subset_binned_data, 'subset', neighbor_well_as, 'urine_as_pred_multiple',
             400, 400, 'Average Arsenic of Wells within 50 m')
 
 # binned urine as vs primary well As for all
@@ -215,7 +218,7 @@ plot_binned(all_binned_data,'all', 'arsenic_ugl', 'urine_as_pred_simple',
             400, 400, 'Primary Household Well Arsenic')
 plot_binned(all_binned_data,'all', 'arsenic_ugl', 'urine_as_pred_multiple', 
             400, 400, 'Primary Household Well Arsenic')
-plot_binned(all_binned_data, 'all', 'other_as_50m', 'urine_as_pred_multiple',
+plot_binned(all_binned_data, 'all', neighbor_well_as, 'urine_as_pred_multiple',
             400, 400, 'Average Arsenic of Wells within 50 m')
 
 #%% solve for fu and fp
