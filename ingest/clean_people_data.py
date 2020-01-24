@@ -53,7 +53,7 @@ people['Sex'] = people['Sex'].map({1: 'male', 2: 'female'})
 #make well id int type
 people = people.astype({'Index well': int})
 #reorder columns
-people = people[['SubjectID', 'Sex', 'Age','Index well', 'UrineAs', 'UrineCreat', 'UrAsgmCr', 'knew_well_arsenic']]
+people = people[['SubjectID', 'Sex', 'Age','Index well', 'UrineAs', 'UrineCreat', 'UrAsgmCr', 'DateInt', 'knew_well_arsenic']]
 print(people.head(5))
 
 people.to_csv(os.path.abspath("ingest/data/people.csv"), index=False)
