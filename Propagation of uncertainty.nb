@@ -1,0 +1,1901 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    111122,       1893]
+NotebookOptionsPosition[    104035,       1809]
+NotebookOutlinePosition[    104378,       1824]
+CellTagsIndexPosition[    104335,       1821]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AutoCollapse", "[", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"$FrontEnd", "=!=", "$Failed"}], ",", 
+     RowBox[{
+      RowBox[{"SelectionMove", "[", 
+       RowBox[{
+        RowBox[{"EvaluationNotebook", "[", "]"}], ",", "All", ",", 
+        "GeneratedCell"}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+      "FrontEndTokenExecute", "[", "\"\<SelectionCloseUnselectedCells\>\"", 
+       "]"}]}]}], "]"}], ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<Symbolic uncertainty:\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Simplify", "[", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"Fold", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"#1", "+", "#2"}], "&"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"D", "[", 
+                RowBox[{"function", ",", 
+                 RowBox[{"{", "variables", "}"}]}], "]"}], "^", "2"}], "*", 
+              RowBox[{
+               RowBox[{"Dt", "[", "variables", "]"}], "^", "2"}]}]}], "]"}], 
+           "]"}], "]"}], "//", "TraditionalForm"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Numerical uncertainty:\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"Simplify", "[", 
+         RowBox[{"ReplaceAll", "[", 
+          RowBox[{
+           RowBox[{"Sqrt", "[", 
+            RowBox[{"Fold", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#1", "+", "#2"}], "&"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"D", "[", 
+                 RowBox[{"function", ",", 
+                  RowBox[{"{", "variables", "}"}]}], "]"}], "^", "2"}], "*", 
+               RowBox[{"uncertainties", "^", "2"}]}]}], "]"}], "]"}], ",", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], "&"}], ",", 
+             RowBox[{"Transpose", "[", 
+              RowBox[{"{", 
+               RowBox[{"variables", ",", "values"}], "}"}], "]"}]}], "]"}]}], 
+          "]"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"function", ",", 
+      RowBox[{"x", "*", "y"}]}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"variables", ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}]}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"values", ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"uncertainties", ",", 
+      RowBox[{"{", 
+       RowBox[{".2", ",", ".3"}], "}"}]}], "}"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"AutoCollapse", "[", "]"}]}], "Input",
+ CellChangeTimes->{{3.7355768311927147`*^9, 3.73557713872416*^9}, {
+  3.7355771713849287`*^9, 
+  3.7355771793262577`*^9}},ExpressionUUID->"0fc96c83-b63a-4457-b6f1-\
+e803f92cff7c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`function$$ = (
+     1 - $CellContext`mb - $CellContext`md) (
+     1 - $CellContext`fc - $CellContext`ff + $CellContext`Aso^(-1) \
+$CellContext`Mf/$CellContext`Q)/($CellContext`Aso^(-1) $CellContext`int + \
+$CellContext`s1 + $CellContext`s2), $CellContext`uncertainties$$ = {
+    0.03, 0, 0.1, 0.06, 6, 1, 1.4, 0.01, 0.03, 5.5}, $CellContext`values$$ = {
+    0.06, 0, 0.2, 0.12, 96, 3, 95.2, 0.62, 0.32, 
+     44.8}, $CellContext`variables$$ = {$CellContext`md, $CellContext`mb, \
+$CellContext`ff, $CellContext`fc, $CellContext`Mf, $CellContext`Q, \
+$CellContext`Aso, $CellContext`s1, $CellContext`s2, $CellContext`int}, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`function$$], $CellContext`x $CellContext`y}}, {{
+       Hold[$CellContext`variables$$], {$CellContext`x, $CellContext`y}}}, {{
+       Hold[$CellContext`values$$], {2, 3}}}, {{
+       Hold[$CellContext`uncertainties$$], {0.2, 0.3}}}}, Typeset`size$$ = {
+    586., {118., 124.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`function$$ = $CellContext`x \
+$CellContext`y, $CellContext`uncertainties$$ = {0.2, 
+         0.3}, $CellContext`values$$ = {2, 
+         3}, $CellContext`variables$$ = {$CellContext`x, $CellContext`y}}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Grid[{{"Symbolic uncertainty:", 
+          TraditionalForm[
+           Simplify[
+            Sqrt[
+             Fold[# + #2& , 
+              D[$CellContext`function$$, {$CellContext`variables$$}]^2 
+              Dt[$CellContext`variables$$]^2]]]]}, {"Numerical uncertainty:", 
+          Simplify[
+           ReplaceAll[
+            Sqrt[
+             
+             Fold[# + #2& , 
+              D[$CellContext`function$$, {$CellContext`variables$$}]^2 \
+$CellContext`uncertainties$$^2]], 
+            Map[Part[#, 1] -> Part[#, 2]& , 
+             
+             Transpose[{$CellContext`variables$$, \
+$CellContext`values$$}]]]]}}], 
+      "Specifications" :> {{{$CellContext`function$$, $CellContext`x \
+$CellContext`y}}, {{$CellContext`variables$$, {$CellContext`x, \
+$CellContext`y}}}, {{$CellContext`values$$, {2, 
+          3}}}, {{$CellContext`uncertainties$$, {0.2, 0.3}}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{637., {228., 234.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7355769937064905`*^9, {3.7355770981057005`*^9, 3.7355771391356716`*^9}, 
+   3.7355771796624823`*^9},ExpressionUUID->"38a27109-4adb-441c-a177-\
+5c719646497b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\
+\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\"}], \\\")\\\"}], \\\" \\\", \\\"S\\\
+\"}], RowBox[{\\\"int\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"5\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \
+RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \\\"2\\\"], \
+RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}]}]\\) cannot be combined.\"",2,1,70,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788628625440281*^9},
+ CellLabel->"",ExpressionUUID->"5e26fe4e-c95c-48a8-a587-c2da0446df70"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\
+\"1\\\", RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"]}]], \\\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \
+\\\"2\\\"], RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}]}]\\) cannot be combined.\"",2,1,71,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286255051055`*^9},
+ CellLabel->"",ExpressionUUID->"96aed72c-8c8d-4398-a9ad-cbcc83dabc09"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\
+\"1\\\", RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"]}]], \\\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \
+\\\"2\\\"], RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}]}]\\) cannot be combined.\"",2,1,72,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286255220613`*^9},
+ CellLabel->"",ExpressionUUID->"a7f7c4e9-d853-459e-81c7-cb8ceef84ac1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,1,73,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286255420065`*^9},
+ CellLabel->"",ExpressionUUID->"a649a9af-4e3d-419c-b71e-5e8afc7fec18"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"S\\\", \\\",\\\", \\\"ff\\\", \
+\\\",\\\", \\\"fc\\\", \\\",\\\", \\\"Aso\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\
+\", \\\"Q\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) cannot be transposed.\"",2,1,74,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286255519814`*^9},
+ CellLabel->"",ExpressionUUID->"9123bd18-1846-4c3a-8c09-ec8753ed6244"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"S\\\", \\\",\\\", \\\"ff\\\", \
+\\\",\\\", \\\"fc\\\", \\\",\\\", \\\"Aso\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\
+\", \\\"Q\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}]}], \
+\\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement rules nor a \
+valid dispatch table, and so cannot be used for replacing.\"",2,1,75,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286255649467`*^9},
+ CellLabel->"",ExpressionUUID->"c84c94f5-7c2b-4bb1-8984-be3e8e624533"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\
+\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\"}], \\\")\\\"}], \\\" \\\", \\\"S\\\
+\"}], RowBox[{\\\"int\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"5\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \
+RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \\\"2\\\"], \
+RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}]}]\\) cannot be combined.\"",2,1,76,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286302519393`*^9},
+ CellLabel->"",ExpressionUUID->"7f03cd22-d88d-4022-a813-82359bab2b3b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\
+\"1\\\", RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"]}]], \\\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \
+\\\"2\\\"], RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}]}]\\) cannot be combined.\"",2,1,77,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286302758656`*^9},
+ CellLabel->"",ExpressionUUID->"f3a10413-c55f-4e09-83fe-d1b0a652466d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.04000000000000001`\\\", \\\",\\\", \\\"0.09`\\\"}], \
+\\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"Aso\
+\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \
+\\\"-\\\", \\\"ff\\\"}], \\\")\\\"}]}], RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\"-\\\", FractionBox[RowBox[{\\\
+\"Aso\\\", \\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Mf\\\", \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"S\\\"}]}], \\\")\\\"}]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]}], \\\")\\\"}], \\\"2\\\"]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+\\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", SuperscriptBox[RowBox[{\\\
+\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"int\\\", \\\"+\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", FractionBox[\\\
+\"1\\\", RowBox[{SuperscriptBox[\\\"Q\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \
+\\\")\\\"}], \\\"2\\\"]}]], \\\",\\\", FractionBox[SuperscriptBox[\\\"Mf\\\", \
+\\\"2\\\"], RowBox[{SuperscriptBox[\\\"Q\\\", \\\"4\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]], \\\
+\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\
+\"Mf\\\", \\\"Q\\\"], \\\"+\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\")\\\"}], \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"int\\\", \\\"+\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"S\\\"}]}], \\\")\\\"}], \\\"4\\\"]]}], \\\
+\"}\\\"}]}]\\) cannot be combined.\"",2,1,78,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286302958117`*^9},
+ CellLabel->"",ExpressionUUID->"e1bf70be-1ca9-4b27-a95b-b5174e896369"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,1,79,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886286303167562`*^9},
+ CellLabel->"",ExpressionUUID->"f918f5ce-54fd-4b18-bf37-a5f088d0aea7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", RowBox[{\\\"0.0001`\
+\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0036`\\\", \
+\\\",\\\", \\\"1.9599999999999997`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"2.8899999999999997`\\\"}], \\\"}\\\"}]}]\\) cannot \
+be combined.\"",2,1,80,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.78862903589847*^9},
+ CellLabel->"",ExpressionUUID->"0b027c41-1a25-4d75-a6fb-3601642d06a2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0.0001`\
+\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0036`\\\", \
+\\\",\\\", \\\"1.9599999999999997`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"2.8899999999999997`\\\"}], \\\"}\\\"}]}]\\) cannot \
+be combined.\"",2,1,81,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886290359343634`*^9},
+ CellLabel->"",ExpressionUUID->"ad2a433c-2ced-4a82-ad86-10eb6161ef9b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0.69`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \
+\\\"0.12`\\\", \\\",\\\", \\\"95.2`\\\", \\\",\\\", \\\"96\\\", \\\",\\\", \\\
+\"3\\\", \\\",\\\", \\\"68.4`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,82,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629035953313*^9},
+ CellLabel->"",ExpressionUUID->"b4ddcaf4-1e5c-44ea-a447-b4a40c0b5c9b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0.69`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \
+\\\"0.12`\\\", \\\",\\\", \\\"95.2`\\\", \\\",\\\", \\\"96\\\", \\\",\\\", \\\
+\"3\\\", \\\",\\\", \\\"68.4`\\\"}], \\\"}\\\"}]}], \\\"]\\\"}], \
+\\\"}\\\"}]\\) is neither a list of replacement rules nor a valid dispatch \
+table, and so cannot be used for replacing.\"",2,1,83,27660921851534067082,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886290359672756`*^9},
+ CellLabel->"",ExpressionUUID->"d18cbc5e-7d4d-43d4-bc1a-1283e646103b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", RowBox[{\\\"0.0001`\
+\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0036`\\\", \
+\\\",\\\", \\\"1.9599999999999997`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"2.8899999999999997`\\\"}], \\\"}\\\"}]}]\\) cannot \
+be combined.\"",2,1,84,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629041265743*^9},
+ CellLabel->"",ExpressionUUID->"54d9c7c3-9d82-44e4-9ef6-5f4cb1f6e5e2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0.0001`\
+\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0036`\\\", \
+\\\",\\\", \\\"1.9599999999999997`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"2.8899999999999997`\\\"}], \\\"}\\\"}]}]\\) cannot \
+be combined.\"",2,1,85,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886290413076296`*^9},
+ CellLabel->"",ExpressionUUID->"469c95ba-5bb9-4e18-96a4-a281b3e2d49d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \\\",\\\", \\\" \
+\\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,86,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629041326579*^9},
+ CellLabel->"",ExpressionUUID->"59068151-c75a-4a6b-b37d-3cfdb5dda60f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \
+\\\",\\\", \\\" \\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \
+\\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement rules nor a \
+valid dispatch table, and so cannot be used for replacing.\"",2,1,87,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629041340542*^9},
+ CellLabel->"",ExpressionUUID->"c027af49-958a-4507-b10a-5c4c23754c20"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \\\",\\\", \\\" \
+\\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,88,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886290484867573`*^9},
+ CellLabel->"",ExpressionUUID->"b83959b3-7a36-49d7-9625-6fe8400795c0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \
+\\\",\\\", \\\" \\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \
+\\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement rules nor a \
+valid dispatch table, and so cannot be used for replacing.\"",2,1,89,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886290485256543`*^9},
+ CellLabel->"",ExpressionUUID->"13eb87d6-7b6b-4eba-ab16-1a27a4e72527"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \
+\\\" \\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \
+\\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\
+\\\"}]}]\\) cannot be combined.\"",2,1,90,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629161408491*^9},
+ CellLabel->"",ExpressionUUID->"a13878f3-b500-4706-8b89-dc84a43556e2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \
+\\\"+\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \
+\\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\
+\\\"}]}]\\) cannot be combined.\"",2,1,91,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629161426443*^9},
+ CellLabel->"",ExpressionUUID->"ec574512-bc4e-438b-a7cb-300874f58d10"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"0.06`\\\", \\\",\\\", \\\"0.6`\\\", \\\",\\\
+\", \\\"0.74`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]\\) cannot be transposed.\"",2,
+   1,92,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629161453377*^9},
+ CellLabel->"",ExpressionUUID->"3b03e9cc-5e85-44d2-b4bf-d83a7ce989ff"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"0\\\", \\\",\\\", \\\"0.06`\\\", \\\",\\\", \\\"0.6`\\\", \\\",\\\", \
+\\\"0.74`\\\"}], \\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a list \
+of replacement rules nor a valid dispatch table, and so cannot be used for \
+replacing.\"",2,1,93,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886291614922667`*^9},
+ CellLabel->"",ExpressionUUID->"fba0d4b3-cb9d-4e14-bb2f-3bd7f4d3ebff"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \
+\\\" \\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \
+\\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\
+\\\"}]}]\\) cannot be combined.\"",2,1,94,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629166420087*^9},
+ CellLabel->"",ExpressionUUID->"7f008a54-2f88-4d02-ac79-b143e43469e8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \
+\\\"+\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \
+\\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\
+\\\"}]}]\\) cannot be combined.\"",2,1,95,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886291664350457`*^9},
+ CellLabel->"",ExpressionUUID->"28ced40e-f99d-4ba4-8796-eca339a4d39d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"?\\\", \\\", .2, .12}\\\"}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,96,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886291664729447`*^9},
+ CellLabel->"",ExpressionUUID->"86311874-c040-441a-a0e0-7ed0ff83ef0e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"?\\\", \\\", .2, .12}\\\"}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a \
+list of replacement rules nor a valid dispatch table, and so cannot be used \
+for replacing.\"",2,1,97,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.78862916651085*^9},
+ CellLabel->"",ExpressionUUID->"77cb46da-1a54-49c6-a270-0a28148eaeb0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"?\\\", \\\", .2, .12}\\\"}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,98,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629172798091*^9},
+ CellLabel->"",ExpressionUUID->"8cf41d3b-3355-44ec-bdca-446bea04bb23"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"fp\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"?\\\", \\\", .2, .12}\\\"}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a \
+list of replacement rules nor a valid dispatch table, and so cannot be used \
+for replacing.\"",2,1,99,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629172810089*^9},
+ CellLabel->"",ExpressionUUID->"da2192ba-dfbc-4af3-a2c5-ae7bbba47fe7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,
+   100,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293356462955`*^9},
+ CellLabel->"",ExpressionUUID->"85483a84-ed53-4ae6-aaef-640db97c046f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,101,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293356692343`*^9},
+ CellLabel->"",ExpressionUUID->"b535444f-ece3-49b6-9726-f4c588141f94"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,102,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293356861887`*^9},
+ CellLabel->"",ExpressionUUID->"daaae9c3-7b01-468a-b8be-8af450da6cd4"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,1,103,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629335703144*^9},
+ CellLabel->"",ExpressionUUID->"58151c62-f283-415c-a5b2-51b0f6097ad5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0.49`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \
+\\\"0.12`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]\\) cannot be transposed.\"",2,1,
+   104,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629335724087*^9},
+ CellLabel->"",ExpressionUUID->"52505335-9964-4eea-9f76-34ed2596817a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0.49`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \
+\\\"0.12`\\\"}], \\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a list \
+of replacement rules nor a valid dispatch table, and so cannot be used for \
+replacing.\"",2,1,105,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629335746028*^9},
+ CellLabel->"",ExpressionUUID->"c6f9ac97-e040-461c-9d87-c1d3bc3a1fe6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,
+   106,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293429073668`*^9},
+ CellLabel->"",ExpressionUUID->"3d1911dc-96ec-45c7-a01f-bb1d175830d9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,107,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629342926317*^9},
+ CellLabel->"",ExpressionUUID->"6e40cf23-1f15-41c7-9261-af535e70cddc"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.010000000000000002`\\\
+\", \\\",\\\", \\\"0.0036`\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \
+SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\
+\\\"fp\\\", \\\"2\\\"], SuperscriptBox[\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], SuperscriptBox[\
+\\\"S\\\", \\\"2\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[\\\"fp\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \
+\\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"]}], SuperscriptBox[\\\"S\\\", \
+\\\"4\\\"]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,108,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629342943272*^9},
+ CellLabel->"",ExpressionUUID->"c59d7e82-07bb-4040-8c72-6c87f487eef8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,1,109,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629342973192*^9},
+ CellLabel->"",ExpressionUUID->"e22f12ed-6775-4a65-8fa5-3483564e9206"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \\\",\\\", \\\" \
+\\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,110,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293429901457`*^9},
+ CellLabel->"",ExpressionUUID->"17d4d29c-661b-489d-b5a5-5ef437a534f8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \
+\\\",\\\", \\\" \\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \
+\\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement rules nor a \
+valid dispatch table, and so cannot be used for replacing.\"",2,1,111,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629343012088*^9},
+ CellLabel->"",ExpressionUUID->"4edb7f1a-b839-41a8-aae7-82f03ea5e1b4"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\
+\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \\\",\\\", \\\" \
+\\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \\\"}\\\"}]\\) cannot be \
+transposed.\"",2,1,112,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629348067563*^9},
+ CellLabel->"",ExpressionUUID->"ea98462b-8361-4b23-ae37-ab732f8fb17d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"mb\\\", \\\",\\\", \\\"md\\\", \\\",\\\
+\", \\\"fp\\\", \\\",\\\", \\\"S\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\" \\\", \\\"0.06\\\", \
+\\\",\\\", \\\" \\\", RowBox[{\\\"?\\\", \\\", 0.74}\\\"}]}]}]}], \
+\\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement rules nor a \
+valid dispatch table, and so cannot be used for replacing.\"",2,1,113,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886293480801516`*^9},
+ CellLabel->"",ExpressionUUID->"a14835a6-1516-4e0e-a575-26ef54a8a613"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"-\\\", \
+FractionBox[RowBox[{RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\
+\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", RowBox[{RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \\\")\\\"}], \\\" \\\", \\\"s1\
+\\\"}], SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Times\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \
+\\\")\\\"}], \\\"2\\\"]]}], \\\"+\\\", FractionBox[RowBox[{\\\"1\\\", \\\"-\\\
+\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", RowBox[{RowBox[{\\\"Power\\\
+\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \
+RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \
+\\\"+\\\", \\\"s2\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"int\\\", \\\
+\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\")\\\"}], \\\" \\\", \\\"s1\\\"}], \
+RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"]}]], \\\"-\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \
+\\\"2\\\"], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\
+\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\
+\")\\\"}], \\\"4\\\"]}]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\\\"}]}]\\) \
+cannot be combined.\"",2,1,114,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295291634426`*^9},
+ CellLabel->"",ExpressionUUID->"9c78eb40-9e85-49b8-bb16-e8e58536b84b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\\\"}], \
+\\\"+\\\", RowBox[{\\\"{\\\", RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"-\\\", FractionBox[RowBox[{RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \
+\\\")\\\"}], \\\" \\\", \\\"s1\\\"}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \
+\\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]]}], \\\"+\\\", \
+FractionBox[RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \
+\\\"+\\\", RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"MfQ\\\"}]}], RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+\\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"0\\\", \\\",\\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]], \\\"-\\\", FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\
+\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\
+\")\\\"}], \\\"4\\\"]}]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,115,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295291903696`*^9},
+ CellLabel->"",ExpressionUUID->"841eeede-9602-45b6-8976-08e009b33473"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0.06`\\\", \
+\\\",\\\", \\\"0.52`\\\", \\\",\\\", \\\"0.74`\\\"}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) cannot be transposed.\"",2,1,116,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295292083244`*^9},
+ CellLabel->"",ExpressionUUID->"d3d92f51-c611-430a-b2ad-d9cf6ef04625"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
+\\\"0.06`\\\", \\\",\\\", \\\"0.52`\\\", \\\",\\\", \\\"0.74`\\\"}], \
+\\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for replacing.\"",2,1,
+   117,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295292222867`*^9},
+ CellLabel->"",ExpressionUUID->"086d768d-45c6-41bb-b3da-e43af43c1be9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"-\\\", \
+FractionBox[RowBox[{RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\
+\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", RowBox[{RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \\\")\\\"}], \\\" \\\", \\\"s1\
+\\\"}], SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"Times\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \
+\\\")\\\"}], \\\"2\\\"]]}], \\\"+\\\", FractionBox[RowBox[{\\\"1\\\", \\\"-\\\
+\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", RowBox[{RowBox[{\\\"Power\\\
+\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \
+RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \
+\\\"+\\\", \\\"s2\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"int\\\", \\\
+\" \\\", RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\")\\\"}], \\\" \\\", \\\"s1\\\"}], \
+RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"]}]], \\\"-\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \
+\\\"2\\\"], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\
+\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\
+\")\\\"}], \\\"4\\\"]}]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\\\"}]}]\\) \
+cannot be combined.\"",2,1,118,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295349919257`*^9},
+ CellLabel->"",ExpressionUUID->"70d76e33-4d52-4e1c-918e-d10530d4a7f0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"0.010000000000000002`\\\", \\\",\\\", \\\"0.0004`\\\"}], \\\"}\\\"}], \
+\\\"+\\\", RowBox[{\\\"{\\\", RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"-\\\", FractionBox[RowBox[{RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \\\"MfQ\\\"}]}], \
+\\\")\\\"}], \\\" \\\", \\\"s1\\\"}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \\\"s1\\\", \
+\\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]]}], \\\"+\\\", \
+FractionBox[RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \
+\\\"+\\\", RowBox[{RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", \\\"MfQ\\\"}]}], RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+\\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[\\\"s1\\\", \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"0\\\", \\\",\\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]], \\\"-\\\", FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"MfQ\\\", \\\"Aso\\\"]}], \\\")\\\"}], \\\"2\\\"], \\\" \\\", \
+SuperscriptBox[\\\"s1\\\", \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\
+\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\
+\")\\\"}], \\\"4\\\"]}]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,119,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629535012869*^9},
+ CellLabel->"",ExpressionUUID->"881aa265-dfde-4d2a-9430-e04838d891a6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \\\".2\
+\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", \
+RowBox[{\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"}\\\"}]\\) \
+cannot be transposed.\"",2,1,120,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629535032816*^9},
+ CellLabel->"",ExpressionUUID->"c4a210b5-b263-48d4-8502-d45641d90586"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \
+\\\".2\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", RowBox[{\
+\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) \
+is neither a list of replacement rules nor a valid dispatch table, and so \
+cannot be used for replacing.\"",2,1,121,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295350467777`*^9},
+ CellLabel->"",ExpressionUUID->"e3f9c6e0-a943-4f9a-9814-9b39e85c7ea2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \\\".2\
+\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", \
+RowBox[{\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"}\\\"}]\\) \
+cannot be transposed.\"",2,1,122,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629555307677*^9},
+ CellLabel->"",ExpressionUUID->"86376249-d1b5-4b20-9646-76770fe39134"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \
+\\\".2\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", RowBox[{\
+\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) \
+is neither a list of replacement rules nor a valid dispatch table, and so \
+cannot be used for replacing.\"",2,1,123,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295553226366`*^9},
+ CellLabel->"",ExpressionUUID->"f2ca9988-c7f3-4043-a981-22c02a7df28e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \\\".2\
+\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", \
+RowBox[{\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"}\\\"}]\\) \
+cannot be transposed.\"",2,1,124,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295704559584`*^9},
+ CellLabel->"",ExpressionUUID->"de3c815a-be78-45b8-9bae-9a8127081ef1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \
+\\\".2\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", RowBox[{\
+\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) \
+is neither a list of replacement rules nor a valid dispatch table, and so \
+cannot be used for replacing.\"",2,1,125,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295704649324`*^9},
+ CellLabel->"",ExpressionUUID->"63eb9f46-9f66-4ace-89a1-62b904aec983"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Null\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \\\".2\
+\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", \
+RowBox[{\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"}\\\"}]\\) \
+cannot be transposed.\"",2,1,126,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629590702791*^9},
+ CellLabel->"",ExpressionUUID->"5af342a1-1e95-4b09-99cd-3af030b44470"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Null\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \
+\\\".2\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", RowBox[{\
+\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) \
+is neither a list of replacement rules nor a valid dispatch table, and so \
+cannot be used for replacing.\"",2,1,127,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886295907117662`*^9},
+ CellLabel->"",ExpressionUUID->"2afd6d3b-1650-46fb-8b2d-b063f0451071"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \\\".2\
+\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", \
+RowBox[{\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"}\\\"}]\\) \
+cannot be transposed.\"",2,1,128,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629602855714*^9},
+ CellLabel->"",ExpressionUUID->"a5067493-389d-43e2-acd3-02aebe67ef27"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"s1\\\", \\\",\\\", \\\"ff\\\", \\\",\\\
+\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \\\"Q\\\", \\\",\\\", \
+\\\"Aso\\\", \\\",\\\", \\\"s2\\\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"{\\\", RowBox[{\\\".73\\\", \\\",\\\", \\\" \\\", \
+\\\".2\\\", \\\",\\\", \\\" \\\", \\\".12\\\", \\\",\\\", \\\" \\\", RowBox[{\
+\\\"?\\\", \\\", 1, 95.2, .08, 61.9}\\\"}]}]}]}], \\\"]\\\"}], \\\"}\\\"}]\\) \
+is neither a list of replacement rules nor a valid dispatch table, and so \
+cannot be used for replacing.\"",2,1,129,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886296028687067`*^9},
+ CellLabel->"",ExpressionUUID->"677cab44-c8a4-4df7-85ce-1ed14fffe129"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\
+\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+\\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"], RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"5\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\\\", FractionBox[\\\"Mf\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\
+\")\\\"}], \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\
+\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]}]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\
+\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,
+   1,130,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299175179663`*^9},
+ CellLabel->"",ExpressionUUID->"2d92a7e5-9edd-4d49-b757-df4d0ea275c0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.0001`\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \
+\\\"0.0036`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1.9599999999999997`\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"9\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\
+\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"]], \\\",\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\",\
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\
+\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]}]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,131,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299175438952`*^9},
+ CellLabel->"",ExpressionUUID->"ad5d3c8f-934b-47e3-9553-3ba60ac91c27"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Transpose","nmtx",
+   "\"The first two levels of \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"md\\\", \\\",\\\", \\\"mb\\\", \\\",\\\
+\", \\\"ff\\\", \\\",\\\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \
+\\\"Q\\\", \\\",\\\", \\\"Aso\\\", \\\",\\\", \\\"s1\\\", \\\",\\\", \\\"s2\\\
+\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.64`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \\\"0.12`\\\", \
+\\\",\\\", \\\"96\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"95.2`\\\", \
+\\\",\\\", \\\"0.36`\\\", \\\",\\\", \\\"39.1`\\\"}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) cannot be transposed.\"",2,1,132,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.788629917563844*^9},
+ CellLabel->"",ExpressionUUID->"e48504a0-a05a-4dca-9f17-0cf686ed4697"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Transpose\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"md\\\", \\\",\\\", \\\"mb\\\", \\\",\\\
+\", \\\"ff\\\", \\\",\\\", \\\"fc\\\", \\\",\\\", \\\"Mf\\\", \\\",\\\", \
+\\\"Q\\\", \\\",\\\", \\\"Aso\\\", \\\",\\\", \\\"s1\\\", \\\",\\\", \\\"s2\\\
+\", \\\",\\\", \\\"int\\\"}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"0.64`\\\", \\\",\\\", \\\"0.2`\\\", \\\",\\\", \
+\\\"0.12`\\\", \\\",\\\", \\\"96\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \
+\\\"95.2`\\\", \\\",\\\", \\\"0.36`\\\", \\\",\\\", \\\"39.1`\\\"}], \
+\\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for replacing.\"",2,1,
+   133,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299175758095`*^9},
+ CellLabel->"",ExpressionUUID->"74f38a66-2cb5-4330-8847-9509c5da3499"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\
+\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+\\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"], RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\"-\\\", \
+FractionBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"5\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\\\", FractionBox[\\\"Mf\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]]}], \\\
+\")\\\"}], \\\"2\\\"]}], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\", \
+RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\
+\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]}]]}], \\\"}\\\"}], \\\" \\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\
+\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,
+   1,134,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299236854663`*^9},
+ CellLabel->"",ExpressionUUID->"53487243-e470-49d5-b5b8-d8777618f02d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.0001`\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \
+\\\"0.0036`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1.9599999999999997`\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"9\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", FractionBox[\\\"Mf\\\
+\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"2\\\"]], \\\",\\\", FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"], SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"int\\\", \\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\
+\", \\\"s2\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \\\"-\\\", \
+\\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]], \\\",\\\", \
+FractionBox[SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"], \
+SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"2\\\"]], \\\",\\\", FractionBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\",\
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+\\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"4\\\"]], \\\",\\\", \
+FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"1\\\", \
+\\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \\\")\\\"}], \\\"2\\\"], \\\" \
+\\\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \\\"2\\\"]}], \
+SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]], \\\",\\\", FractionBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"mb\\\", \\\"-\\\", \\\"md\\\"}], \
+\\\")\\\"}], \\\"2\\\"], \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"1\\\", \\\"-\\\", \\\"fc\\\", \\\"-\\\", \\\"ff\\\", \\\"+\\\", \
+FractionBox[\\\"Mf\\\", RowBox[{\\\"Aso\\\", \\\" \\\", \\\"Q\\\"}]]}], \\\")\
+\\\"}], \\\"2\\\"]}], RowBox[{SuperscriptBox[\\\"Aso\\\", \\\"2\\\"], \\\" \\\
+\", SuperscriptBox[RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"int\\\", \
+\\\"Aso\\\"], \\\"+\\\", \\\"s1\\\", \\\"+\\\", \\\"s2\\\"}], \\\")\\\"}], \\\
+\"4\\\"]}]]}], \\\"}\\\"}]}]\\) cannot be combined.\"",2,1,135,
+   27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299237084045`*^9},
+ CellLabel->"",ExpressionUUID->"0c4656d1-fe6b-4277-9963-982e2343ad75"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.0001`\\\", \\\",\\\", \\\"0.010000000000000002`\\\", \\\",\\\", \
+\\\"0.0036`\\\", \\\",\\\", \\\"36\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1.9599999999999997`\\\", \\\",\\\", \\\"0.0009`\\\", \\\",\\\", \
+\\\"9\\\"}], \\\"}\\\"}], \\\"+\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.4842522726921987`\\\", \\\",\\\", \\\"0.4842522726921987`\\\", \
+\\\",\\\", \\\"0.41440503230360287`\\\", \\\",\\\", \
+\\\"0.41440503230360287`\\\", \\\",\\\", \\\"5.080525253037524`*^-6\\\", \
+\\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"21\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"6.188337706999417`*^-7\\\", \
+\\\",\\\", \\\"0.20067657870810368`\\\", \\\",\\\", \
+\\\"0.20067657870810368`\\\", \\\",\\\", \\\"0.00002214230310228176`\\\"}], \
+\\\"}\\\"}]}]\\) cannot be combined.\"",2,1,136,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299237293525`*^9},
+ CellLabel->"",ExpressionUUID->"b6f6e515-1970-4050-bea9-f500ae8b882e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,1,137,27660921851534067082,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7886299237512884`*^9},
+ CellLabel->"",ExpressionUUID->"eaf0afa5-20ab-439a-bd98-16a6cab0143d"]
+}, Open  ]]
+},
+WindowSize->{759, 601},
+WindowMargins->{{Automatic, 295}, {24, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 3370, 91, 295, "Input",ExpressionUUID->"0fc96c83-b63a-4457-b6f1-e803f92cff7c"],
+Cell[3953, 115, 3439, 70, 481, "Output",ExpressionUUID->"38a27109-4adb-441c-a177-5c719646497b"],
+Cell[7395, 187, 3887, 56, 172, "Message",ExpressionUUID->"5e26fe4e-c95c-48a8-a587-c2da0446df70"],
+Cell[11285, 245, 3710, 53, 147, "Message",ExpressionUUID->"96aed72c-8c8d-4398-a9ad-cbcc83dabc09"],
+Cell[14998, 300, 3710, 53, 147, "Message",ExpressionUUID->"a7f7c4e9-d853-459e-81c7-cb8ceef84ac1"],
+Cell[18711, 355, 412, 8, 21, "Message",ExpressionUUID->"a649a9af-4e3d-419c-b71e-5e8afc7fec18"],
+Cell[19126, 365, 640, 11, 23, "Message",ExpressionUUID->"9123bd18-1846-4c3a-8c09-ec8753ed6244"],
+Cell[19769, 378, 762, 13, 40, "Message",ExpressionUUID->"c84c94f5-7c2b-4bb1-8984-be3e8e624533"],
+Cell[20534, 393, 3889, 56, 172, "Message",ExpressionUUID->"7f03cd22-d88d-4022-a813-82359bab2b3b"],
+Cell[24426, 451, 3710, 53, 147, "Message",ExpressionUUID->"f3a10413-c55f-4e09-83fe-d1b0a652466d"],
+Cell[28139, 506, 3710, 53, 147, "Message",ExpressionUUID->"e1bf70be-1ca9-4b27-a95b-b5174e896369"],
+Cell[31852, 561, 412, 8, 21, "Message",ExpressionUUID->"f918f5ce-54fd-4b18-bf37-a5f088d0aea7"],
+Cell[32267, 571, 1280, 20, 63, "Message",ExpressionUUID->"0b027c41-1a25-4d75-a6fb-3601642d06a2"],
+Cell[33550, 593, 1283, 20, 63, "Message",ExpressionUUID->"ad2a433c-2ced-4a82-ad86-10eb6161ef9b"],
+Cell[34836, 615, 700, 12, 23, "Message",ExpressionUUID->"b4ddcaf4-1e5c-44ea-a447-b4a40c0b5c9b"],
+Cell[35539, 629, 824, 14, 40, "Message",ExpressionUUID->"d18cbc5e-7d4d-43d4-bc1a-1283e646103b"],
+Cell[36366, 645, 1281, 20, 63, "Message",ExpressionUUID->"54d9c7c3-9d82-44e4-9ef6-5f4cb1f6e5e2"],
+Cell[37650, 667, 1283, 20, 63, "Message",ExpressionUUID->"469c95ba-5bb9-4e18-96a4-a281b3e2d49d"],
+Cell[38936, 689, 631, 11, 23, "Message",ExpressionUUID->"59068151-c75a-4a6b-b37d-3cfdb5dda60f"],
+Cell[39570, 702, 753, 13, 40, "Message",ExpressionUUID->"c027af49-958a-4507-b10a-5c4c23754c20"],
+Cell[40326, 717, 633, 11, 23, "Message",ExpressionUUID->"b83959b3-7a36-49d7-9625-6fe8400795c0"],
+Cell[40962, 730, 755, 13, 40, "Message",ExpressionUUID->"13eb87d6-7b6b-4eba-ab16-1a27a4e72527"],
+Cell[41720, 745, 586, 10, 23, "Message",ExpressionUUID->"a13878f3-b500-4706-8b89-dc84a43556e2"],
+Cell[42309, 757, 586, 10, 23, "Message",ExpressionUUID->"ec574512-bc4e-438b-a7cb-300874f58d10"],
+Cell[42898, 769, 603, 11, 23, "Message",ExpressionUUID->"3b03e9cc-5e85-44d2-b4bf-d83a7ce989ff"],
+Cell[43504, 782, 721, 12, 40, "Message",ExpressionUUID->"fba0d4b3-cb9d-4e14-bb2f-3bd7f4d3ebff"],
+Cell[44228, 796, 586, 10, 23, "Message",ExpressionUUID->"7f008a54-2f88-4d02-ac79-b143e43469e8"],
+Cell[44817, 808, 588, 10, 23, "Message",ExpressionUUID->"28ced40e-f99d-4ba4-8796-eca339a4d39d"],
+Cell[45408, 820, 533, 10, 23, "Message",ExpressionUUID->"86311874-c040-441a-a0e0-7ed0ff83ef0e"],
+Cell[45944, 832, 648, 11, 40, "Message",ExpressionUUID->"77cb46da-1a54-49c6-a270-0a28148eaeb0"],
+Cell[46595, 845, 531, 10, 23, "Message",ExpressionUUID->"8cf41d3b-3355-44ec-bdca-446bea04bb23"],
+Cell[47129, 857, 649, 11, 40, "Message",ExpressionUUID->"da2192ba-dfbc-4af3-a2c5-ae7bbba47fe7"],
+Cell[47781, 870, 1173, 19, 65, "Message",ExpressionUUID->"85483a84-ed53-4ae6-aaef-640db97c046f"],
+Cell[48957, 891, 1173, 19, 65, "Message",ExpressionUUID->"b535444f-ece3-49b6-9726-f4c588141f94"],
+Cell[50133, 912, 1173, 19, 65, "Message",ExpressionUUID->"daaae9c3-7b01-468a-b8be-8af450da6cd4"],
+Cell[51309, 933, 411, 8, 21, "Message",ExpressionUUID->"58151c62-f283-415c-a5b2-51b0f6097ad5"],
+Cell[51723, 943, 604, 11, 23, "Message",ExpressionUUID->"52505335-9964-4eea-9f76-34ed2596817a"],
+Cell[52330, 956, 720, 12, 40, "Message",ExpressionUUID->"c6f9ac97-e040-461c-9d87-c1d3bc3a1fe6"],
+Cell[53053, 970, 1173, 19, 65, "Message",ExpressionUUID->"3d1911dc-96ec-45c7-a01f-bb1d175830d9"],
+Cell[54229, 991, 1171, 19, 65, "Message",ExpressionUUID->"6e40cf23-1f15-41c7-9261-af535e70cddc"],
+Cell[55403, 1012, 1171, 19, 65, "Message",ExpressionUUID->"c59d7e82-07bb-4040-8c72-6c87f487eef8"],
+Cell[56577, 1033, 411, 8, 21, "Message",ExpressionUUID->"e22f12ed-6775-4a65-8fa5-3483564e9206"],
+Cell[56991, 1043, 634, 11, 23, "Message",ExpressionUUID->"17d4d29c-661b-489d-b5a5-5ef437a534f8"],
+Cell[57628, 1056, 754, 13, 40, "Message",ExpressionUUID->"4edb7f1a-b839-41a8-aae7-82f03ea5e1b4"],
+Cell[58385, 1071, 632, 11, 23, "Message",ExpressionUUID->"ea98462b-8361-4b23-ae37-ab732f8fb17d"],
+Cell[59020, 1084, 756, 13, 40, "Message",ExpressionUUID->"a14835a6-1516-4e0e-a575-26ef54a8a613"],
+Cell[59779, 1099, 3630, 52, 162, "Message",ExpressionUUID->"9c78eb40-9e85-49b8-bb16-e8e58536b84b"],
+Cell[63412, 1153, 3426, 49, 141, "Message",ExpressionUUID->"841eeede-9602-45b6-8976-08e009b33473"],
+Cell[66841, 1204, 723, 12, 23, "Message",ExpressionUUID->"d3d92f51-c611-430a-b2ad-d9cf6ef04625"],
+Cell[67567, 1218, 845, 14, 40, "Message",ExpressionUUID->"086d768d-45c6-41bb-b3da-e43af43c1be9"],
+Cell[68415, 1234, 3630, 52, 162, "Message",ExpressionUUID->"70d76e33-4d52-4e1c-918e-d10530d4a7f0"],
+Cell[72048, 1288, 3424, 49, 141, "Message",ExpressionUUID->"881aa265-dfde-4d2a-9430-e04838d891a6"],
+Cell[75475, 1339, 779, 13, 23, "Message",ExpressionUUID->"c4a210b5-b263-48d4-8502-d45641d90586"],
+Cell[76257, 1354, 899, 14, 40, "Message",ExpressionUUID->"e3f9c6e0-a943-4f9a-9814-9b39e85c7ea2"],
+Cell[77159, 1370, 779, 13, 23, "Message",ExpressionUUID->"86376249-d1b5-4b20-9646-76770fe39134"],
+Cell[77941, 1385, 899, 14, 40, "Message",ExpressionUUID->"f2ca9988-c7f3-4043-a981-22c02a7df28e"],
+Cell[78843, 1401, 781, 13, 23, "Message",ExpressionUUID->"de3c815a-be78-45b8-9bae-9a8127081ef1"],
+Cell[79627, 1416, 899, 14, 40, "Message",ExpressionUUID->"63eb9f46-9f66-4ace-89a1-62b904aec983"],
+Cell[80529, 1432, 781, 13, 40, "Message",ExpressionUUID->"5af342a1-1e95-4b09-99cd-3af030b44470"],
+Cell[81313, 1447, 901, 14, 40, "Message",ExpressionUUID->"2afd6d3b-1650-46fb-8b2d-b063f0451071"],
+Cell[82217, 1463, 779, 13, 23, "Message",ExpressionUUID->"a5067493-389d-43e2-acd3-02aebe67ef27"],
+Cell[82999, 1478, 899, 14, 40, "Message",ExpressionUUID->"677cab44-c8a4-4df7-85ce-1ed14fffe129"],
+Cell[83901, 1494, 4503, 65, 180, "Message",ExpressionUUID->"2d92a7e5-9edd-4d49-b757-df4d0ea275c0"],
+Cell[88407, 1561, 3851, 56, 180, "Message",ExpressionUUID->"ad5d3c8f-934b-47e3-9553-3ba60ac91c27"],
+Cell[92261, 1619, 871, 14, 40, "Message",ExpressionUUID->"e48504a0-a05a-4dca-9f17-0cf686ed4697"],
+Cell[93135, 1635, 995, 16, 40, "Message",ExpressionUUID->"74f38a66-2cb5-4330-8847-9509c5da3499"],
+Cell[94133, 1653, 4503, 65, 180, "Message",ExpressionUUID->"53487243-e470-49d5-b5b8-d8777618f02d"],
+Cell[98639, 1720, 3851, 56, 180, "Message",ExpressionUUID->"0c4656d1-fe6b-4277-9963-982e2343ad75"],
+Cell[102493, 1778, 1110, 18, 72, "Message",ExpressionUUID->"b6f6e515-1970-4050-bea9-f500ae8b882e"],
+Cell[103606, 1798, 413, 8, 21, "Message",ExpressionUUID->"eaf0afa5-20ab-439a-bd98-16a6cab0143d"]
+}, Open  ]]
+}
+]
+*)
+

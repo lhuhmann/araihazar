@@ -1,0 +1,54 @@
+
+Simple linear regression
+
+fp:
+(S*(1-ff-fc)*Aso+Mf/Q)/(S*Aso+int)  
+{S, ff, fc, Aso, Mf, Q, int}
+{0.74, 0.2, 0.12, 95.2, 96, 3, 69.3}
+{0.02, 0.1, 0.06, 1.4, 6, 1, 3.3}
+
+fu:
+(fp*(1 - mb - md))/S
+{mb, md, fp, S}
+{0, 0.06, ?, 0.74}
+{0, 0.03, ?, 0.02}
+
+fo:
+1 - fp - ff - fc
+{fp, ff, fc}
+{?, .2, .12}
+{?, .1, .06}
+
+Multiple linear regression
+fp:
+s1*(1-ff-fc+Mf/Q/Aso)/(s1+s2+int/Aso)
+{s1, ff, fc, Mf, Q, Aso, s2, int}
+{.73, .2, .12, 96, 3, 95.2, .08, 61.9}
+{.02, .1, .06, 6, 1, 1.4, .07, 7.1}
+
+fu:
+(1-md-mb)*(1-ff-fc+Mf/Q/Aso)/(s1+s2+int/Aso)
+{md, mb, ff, fc, Mf, Q, Aso, s1, s2, int}
+{0.06, 0, .2, .12, 96, 3, 95.2, .73, .08, 61.9}
+{0.03, 0, .1, .06, 6, 1, 1.4, .02, .07, 7.1}
+
+fo:
+int*(1-ff-fc+Mf/Q/Aso)/(s1*Aso+s2*Aso+int)-(Mf/Q/Aso)
+{int, ff, fc, Mf, Q, Aso, s1, s2}
+{61.9, .2, .12, 96, 3, 95.2, .73, .08}
+{7.1, .1, .06, 6, 1, 1.4, .02, .07}
+
+fh:
+1 - fp - fo - ff - fc
+{fp, fo, ff, fc}
+{?, ?, .2, .12}
+{?, ?, .1, .06}
+
+
+
+
+fraction As from other wells:
+fo*Aso/(fo*Aso+fp*Asp)
+{fo, Aso, fp, Asp}
+{0.19, 95.2, 0.49, 10}
+{0.15, 1.4, 0.1, 0}
