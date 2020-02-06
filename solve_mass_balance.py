@@ -1,14 +1,19 @@
-import json
-import sympy as sym
 import csv
+import os
 
-def calculate_parameters(simple_results, two_slope_results, ext_params, group_name):
-    solve_fracs_simple(simple_results, group_name, ext_params)
-    solve_fracs_multiple(two_slope_results, group_name, ext_params)
+import sympy as sym
 
+def calculate_parameters(distributed_results, household_results, ext_params, group_name):
+    """Calculate parameters for distributed well model and household well model
+    and save to csv files."""
+    solve_params_distributed(distributed_results, group_name, ext_params)
+    solve_params_household(household_results, group_name, ext_params)
+
+# adapted function from Jason
 def propagate_uncertainty(expr, values=None, uncertainties=None, d=sym.symbols('d', cls=sym.Function)):
     """
-    propagate_uncertainty takes a sympy expression, and optionally dicts mapping variables to their values and uncertainties, and returns the propagated uncertainty
+    propagate_uncertainty takes a sympy expression, and optionally dicts mapping variables
+    to their values and uncertainties, and returns the propagated uncertainty
 
     >>> x, y = sym.symbols('x y')
     >>> propagate_uncertainty(x * y)
@@ -41,26 +46,27 @@ def propagate_uncertainty(expr, values=None, uncertainties=None, d=sym.symbols('
     return expr.subs(values), final_error
 
 def split_uncertainties(parameters_with_uncertainties):
+    """Takes a dict mapping variable to tuples of (value, uncertainty).
+    Splits it into separate dicts for values and uncertainties and turns variables into sympy Symbols."""
     params = {sym.Symbol(k):v[0] for k, v in parameters_with_uncertainties.items()}
     uncertainties = {sym.Symbol(k):v[1] for k, v in parameters_with_uncertainties.items()}
     return params, uncertainties
 
-def format(arg):
+def apply_formatting(arg):
+    """Applies formatting to parameters for display."""
     if isinstance(arg, dict):
-        return {k:format(v) for k, v in arg.items()}
+        return {k:apply_formatting(v) for k, v in arg.items()}
     elif isinstance(arg, tuple):
-        return '+-'.join(map(str, map(format, arg)))
+        return '+-'.join(map(str, map(apply_formatting, arg)))
     else:
         return round(float(arg), 2)
 
-
-def solve_fracs_simple(model, group_name, ext_params):
-
+def solve_params_distributed(model, group_name, ext_params):
+    """Solve for parameters and uncertainties for distributed well model and save to csv."""
     ff, fc, md, mb, Mf, Q, avgAs, slope, intercept = sym.symbols('ff fc md mb Mf Q avgAs slope intercept')
     # get values and uncertainties for external parameters
     values, uncertainties = split_uncertainties(ext_params)
     # get values and uncertainties for slope and intercept
-    print(model)
     values[slope] = model.params[1]
     values[intercept] = model.params[0]
     uncertainties[slope] = model.bse[1]
@@ -80,23 +86,19 @@ def solve_fracs_simple(model, group_name, ext_params):
     vfrac_other_well, dfrac_other_well = propagate_uncertainty(frac_other_well, values, uncertainties)
 
     solutions = {'nobs':model.nobs, 'r2':model.rsquared, 'r2_adj':model.rsquared_adj,
-                 'intercept':(model.params[0],model.bse[0]), 'slope':(model.params[1],model.bse[1]),
-                 'fu':(vfu, dfu), 'fp':(vfp,dfp), 'fo':(vfo, dfo), 
+                'intercept':(model.params[0], model.bse[0]), 'slope':(model.params[1], model.bse[1]),
+                'fu':(vfu, dfu), 'fp':(vfp, dfp), 'fo':(vfo, dfo),
                 'frac_primary_well':(vfrac_primary_well, dfrac_primary_well),
                 'frac_other_well':(vfrac_other_well, dfrac_other_well)}
-    with open(group_name + '_simple_regression_solved.csv', "w") as filepath: 
-        writer = csv.writer(filepath) 
-        for row in format(solutions).items():
+    # also include the input parameters so they can be referenced alongside the output parmeters
+    solutions.update(ext_params)
+    with open(os.path.abspath('output_data/' + group_name + '_distributed_solved.csv'), "w") as filepath:
+        writer = csv.writer(filepath)
+        for row in apply_formatting(solutions).items():
             writer.writerow(row)
 
-def solve_fracs_multiple(model, group_name, ext_params):
-    # # slope (primary well arsenic)
-    # slope_primary = model.params[1]
-    # # slope (neighbor well arsenic)
-    # slope_household = model.params[2]
-    # # intercept
-    # intercept = model.params[0]
-
+def solve_params_household(model, group_name, ext_params):
+    """Solve for parameters and uncertainties for distributed well model and save to csv."""
     ff, fc, md, mb, Mf, Q, avgAs, slope_primary, slope_household, intercept = \
         sym.symbols('ff fc md mb Mf Q avgAs slope_primary slope_household intercept')
     values, uncertainties = split_uncertainties(ext_params)
@@ -128,16 +130,17 @@ def solve_fracs_multiple(model, group_name, ext_params):
     vfrac_household_well, dfrac_household_well = propagate_uncertainty(frac_household_well, values, uncertainties)
 
     solutions =  {'nobs':model.nobs, 'r2':model.rsquared, 'r2_adj':model.rsquared_adj,
-                 'intercept':(model.params[0],model.bse[0]), 
-                 'slope_primary':(model.params[1],model.bse[1]),
-                 'slope_household':(model.params[2],model.bse[2]),
-                'fu':(vfu, dfu), 'fp':(vfp, dfp), 'fh':(vfh, dfh),'fo':(vfo, dfo), 
-                'frac_primary_well':(vfrac_primary_well, dfrac_primary_well), 
+                'intercept':(model.params[0], model.bse[0]),
+                'slope_primary':(model.params[1], model.bse[1]),
+                'slope_household':(model.params[2], model.bse[2]),
+                'fu':(vfu, dfu), 'fp':(vfp, dfp), 'fh':(vfh, dfh), 'fo':(vfo, dfo),
+                'frac_primary_well':(vfrac_primary_well, dfrac_primary_well),
                 'frac_household_well':(vfrac_household_well, dfrac_household_well),
                 'frac_other_well':(vfrac_other_well, dfrac_other_well)
                 }
-    with open(group_name + '_multiple_regression_solved.csv', "w") as filepath: 
-        writer = csv.writer(filepath) 
+    solutions.update(ext_params)
+    with open(os.path.abspath('output_data/' + group_name + '_household_solved.csv'), "w") as filepath:
+        writer = csv.writer(filepath)
         for row in format(solutions).items():
             writer.writerow(row)
 
