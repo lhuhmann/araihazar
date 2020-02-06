@@ -40,8 +40,8 @@ def household_wells_regress(data, group_name, household_well_as):
                     results.params[2]*data[household_well_as] + \
                     results.params[0]
     data['urine_as_pred_household'] = urine_as_pred
-    with open(os.path.abspath('output_data/' + group_name +'_urine_as_pred_household.csv'), mode='w') as filepath:
-        writer = csv.writer(filepath)
+    with open(os.path.abspath('output_data/' + group_name +'_urine_as_pred_household.csv'), mode='w') as savefile:
+        writer = csv.writer(savefile)
         data_for_csv = [data.arsenic_ugl, data['urine_as_pred_household']]
         writer.writerow(['arsenic_ugl','urine_as_pred_household'])
         writer.writerows(zip(*data_for_csv))

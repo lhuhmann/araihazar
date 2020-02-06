@@ -34,10 +34,14 @@ def scatter_plot_simple_regress(results, data, group_name):
     ax.set_xlim([0, 800])
     ax.xaxis.set_ticks([0, 200, 400, 600, 800])
     # using latex math formatting according to https://matplotlib.org/tutorials/text/mathtext.html
-    ax.add_artist(AnchoredText(r'$R^2 = ' + str(round(results.rsquared, 3)) +
-            '$\n$n = ' + str(int(results.nobs)) +
-            '$\n$slope = ' + str(round(results.params[1], 2)) +
-            '$\n$intercept = $' + str(int(results.params[0])),
+    ax.add_artist(AnchoredText(
+            fr'$R^2 = {results.rsquared:.2f}$' +
+            '\n' +
+            fr'$n = {int(results.nobs)}$' +
+            '\n' +
+            fr'$slope = {results.params[1]:.2f}$' +
+            '\n' +
+            fr'$intercept = {results.params[0]:.0f}$',
             loc=2, frameon=False, prop=dict(size=14)))
     plt.savefig('plots/' + group_name + '_distributed_model.png')
 
@@ -51,10 +55,14 @@ def scatter_plot_multiple_regress(results, data, group_name, household_well_as):
     ax.scatter(data.arsenic_ugl, data['urine_as_pred_household'], marker='o', s=5, c='r', edgecolors='none')
     ax.set_xlim([0, 800])
     ax.xaxis.set_ticks([0, 200, 400, 600, 800])
-    ax.add_artist(AnchoredText(r'$R^2 = ' + str(round(results.rsquared, 3)) +
-            '$\n$n = ' + str(int(results.nobs)) +
-            '$\n$slope_{PrimaryWell} = ' + str(round(results.params[1], 2)) +
-            '$\n$intercept = $' + str(int(results.params[0])),
+    ax.add_artist(AnchoredText(
+            fr'$R^2 = {results.rsquared:.3f}$' +
+            '\n' +
+            fr'$n = {int(results.nobs)}$' +
+            '\n' +
+            fr'$slope_{{PrimaryWell}} = {results.params[1]:.2f}$' +
+            '\n' +
+            fr'$intercept = {results.params[0]:.0f}$',
             loc=2, frameon=False, prop=dict(size=14)))
     plt.savefig('plots/' + group_name + '_household_model_primary_well.png')
 
@@ -68,28 +76,25 @@ def scatter_plot_multiple_regress(results, data, group_name, household_well_as):
                marker='o', s=5, c='r', edgecolors='none')
     ax.set_xlim([0, 350])
     ax.xaxis.set_ticks([0, 50, 100, 150, 200, 250, 300, 350])
-    ax.add_artist(AnchoredText(r'$R^2 = ' + str(round(results.rsquared, 3)) +
-                  '$\n$n = ' + str(int(results.nobs)) +
-                  '$\n$slope_{50mWellAverage} = ' + str(round(results.params[1], 2)) +
-                  '$\n$intercept = $' + str(int(results.params[0])), 
+    ax.add_artist(AnchoredText(
+                  fr'$R^2 = {results.rsquared:.3f}$' +
+                  '\n' +
+                  fr'$n = {int(results.nobs)}$' +
+                  '\n' +
+                  fr'$slope_{{HouseholdWellAverage}} = {results.params[1]:.2f}$' +
+                  '\n' +
+                  fr'$intercept = {results.params[0]:.0f}$',
                   loc=2, frameon=False, prop=dict(size=14)))
     plt.savefig('plots/' + group_name + '_household_model_household_wells.png')
 
-def get_mean(data, colname, first_index, last_index):
-    return np.mean(data.loc[first_index:last_index, colname])
-
-def get_sem(data, colname, first_index, last_index):
-    return stats.sem(data.loc[first_index:last_index, colname])
-
-def add_values(data, binned_data, first_index, last_index, household_well_as):
-    """Add mean and sem for a given bin to binned_data dataframe."""
-    val_dict = {}
+def get_mean_sem_dict(data, first_index, last_index, household_well_as):
+    """Return a dict containing the means and sems for a given bin"""
+    mean_sem_dict = {}
     for colname in ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
                     'urine_as_pred_household']:
-        val_dict[colname + '_mean'] = get_mean(data, colname, first_index, last_index)
-        val_dict[colname + '_sem'] = get_sem(data, colname, first_index, last_index)
-    binned_data = binned_data.append(val_dict, ignore_index=True)
-    return binned_data
+        mean_sem_dict[colname + '_mean'] = np.mean(data.loc[first_index:last_index, colname])
+        mean_sem_dict[colname + '_sem'] = stats.sem(data.loc[first_index:last_index, colname])
+    return mean_sem_dict
 
 def get_binned_data(data, nbins, household_well_as):
     """Divide data into nbins bins by primary well arsenic concentration and get average and sem for each bin.
@@ -100,17 +105,15 @@ def get_binned_data(data, nbins, household_well_as):
     binned_data = pd.DataFrame()
     n_tot = data.shape[0]
     bin_size = n_tot//nbins
-    # get mean and sem for first through penultimate bin
+    # get mean and sem for each bin
     for i in range(0, nbins-1):
         # index of first and last item in bin
         first_index = i*bin_size
         last_index = (i+1)*bin_size-1
-        binned_data = add_values(data, binned_data, first_index, last_index, household_well_as)
-    # get mean and sem for final bin, which may have 'extra' data
-    i += 1
-    first_index = i*bin_size
-    last_index = n_tot
-    binned_data = add_values(data, binned_data, first_index, last_index, household_well_as)
+        # final bin may have 'extra' data
+        if i == nbins - 1:
+            last_index = n_tot
+        binned_data = binned_data.append(get_mean_sem_dict(data, first_index, last_index, household_well_as), ignore_index=True)
     return binned_data
 
 def plot_binned(data, group_name, xvar, yvar, xmax, ymax, xlabel):

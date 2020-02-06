@@ -13,19 +13,17 @@ def make_subset(data, group_name):
     if group_name == 'did_not_know':
         # keep only the rows where people did not know their well As
         # when their urine As was measured
-        data = data[data['knew_well_as'] == False]
+        return data[data['knew_well_as'] == False]
     elif group_name == 'women':
-        data = data[data['sex'] == 'female']
+        return data[data['sex'] == 'female']
     elif group_name == 'women_did_not_know':
-        data = data[data['knew_well_as'] == False]
-        data = data[data['sex'] == 'female']
+        return data[(data['knew_well_as'] == False) & (data['sex'] == 'female')]
     elif group_name == 'men':
-        data = data[data['sex'] == 'male']
+        return data[data['sex'] == 'male']
     elif group_name == 'men_did_not_know':
-        data = data[data['knew_well_as'] == False]
-        data = data[data['sex'] == 'male']
+        return data[(data['knew_well_as'] == False) & (data['sex'] == 'male')]
     elif group_name == 'all':
-        data = data
+        return data
     else:
         assert False, 'Group does not exist'
     return data
