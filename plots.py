@@ -10,7 +10,8 @@ def make_plots(distributed_results, distributed_params, household_results, house
     scatter_plot_simple_regress(distributed_results, data, group_name)
     scatter_plot_multiple_regress(household_results, data, group_name, household_well_as)
     # scatter plots of binned data
-    binned_data = get_binned_data(data, numbins, household_well_as)
+    binned_data = get_binned_data(data, numbins, ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
+                    'urine_as_pred_household'])
     plot_binned(binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_distributed',
                 400, 400, 'Primary Household Well Arsenic')
     plot_binned(binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_household',
@@ -90,16 +91,15 @@ def scatter_plot_multiple_regress(results, data, group_name, household_well_as):
                   loc=2, frameon=False, prop=dict(size=14)))
     plt.savefig('plots/' + group_name + '_household_model_household_wells.png')
 
-def get_mean_sem_dict(data, first_index, last_index, household_well_as):
+def get_mean_sem_dict(data, first_index, last_index, columns):
     """Return a dict containing the means and sems for a given bin"""
     mean_sem_dict = {}
-    for colname in ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
-                    'urine_as_pred_household']:
+    for colname in columns:
         mean_sem_dict[colname + '_mean'] = np.mean(data.loc[first_index:last_index, colname])
         mean_sem_dict[colname + '_sem'] = stats.sem(data.loc[first_index:last_index, colname])
     return mean_sem_dict
 
-def get_binned_data(data, nbins, household_well_as):
+def get_binned_data(data, nbins, columns):
     """Divide data into nbins bins by primary well arsenic concentration and get average and sem for each bin.
     If data does not divide evenly into bins, 'extra' data is included in the final bin."""
     data = data.reset_index(drop=True)
@@ -116,7 +116,7 @@ def get_binned_data(data, nbins, household_well_as):
         # final bin may have 'extra' data
         if i == nbins - 1:
             last_index = n_tot
-        binned_data = binned_data.append(get_mean_sem_dict(data, first_index, last_index, household_well_as), ignore_index=True)
+        binned_data = binned_data.append(get_mean_sem_dict(data, first_index, last_index, columns), ignore_index=True)
     return binned_data
 
 def plot_binned(data, group_name, xvar, yvar, xmax, ymax, xlabel):
