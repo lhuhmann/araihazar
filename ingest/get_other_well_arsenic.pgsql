@@ -1,13 +1,15 @@
 ALTER TABLE wells
-ADD COLUMN other_as_50m float,
-ADD COLUMN other_as_40m float,
-ADD COLUMN other_as_30m float,
+ADD COLUMN other_as_100m float,
+ADD COLUMN other_as_200m float,
+ADD COLUMN other_as_300m float,
+ADD COLUMN other_as_400m float,
+ADD COLUMN other_as_500m float;
 --ADD COLUMN other_as_hyp_beyond_20 float,
 --ADD COLUMN other_as_exp float,
 --ADD COLUMN other_as_exp_dist_round float
-ADD COLUMN other_as_exp_beyond_50 float,
-ADD COLUMN other_as_exp_beyond_40 float,
-ADD COLUMN other_as_exp_beyond_30 float;
+-- ADD COLUMN other_as_exp_beyond_50 float,
+-- ADD COLUMN other_as_exp_beyond_40 float,
+-- ADD COLUMN other_as_exp_beyond_30 float;
 
 --assume person drinks equally from all wells within 50 m
 WITH other_as_table (well1_id, other_as) AS (

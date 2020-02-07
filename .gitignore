@@ -136,3 +136,6 @@ documentation/
 
 #file history
 .history/
+
+# output data files
+output_data/

@@ -5,7 +5,12 @@ SELECT people.subject_id,
        wells.well_id, 
        wells.arsenic_ugl, 
        wells.other_as_50m,
-	wells.other_as_hyp_beyond_50,
+       wells.other_as_100m,
+       wells.other_as_200m,
+       wells.other_as_300m,
+       wells.other_as_400m,
+       wells.other_as_500m,
+	--wells.other_as_hyp_beyond_50,
        --if there were no wells within 30 m, use well arsenic from primary well
        COALESCE(wells.other_as_30m, wells.arsenic_ugL) AS other_as_30m,
        COALESCE(wells.other_as_20m, wells.arsenic_ugL) AS other_as_20m

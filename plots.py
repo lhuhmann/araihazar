@@ -4,7 +4,7 @@ from matplotlib.offsetbox import AnchoredText
 import scipy.stats as stats
 import numpy as np
 
-def make_plots(distributed_results, household_results, data, group_name, numbins, household_well_as):
+def make_plots(distributed_results, distributed_params, household_results, household_params, data, group_name, numbins, household_well_as):
     """Make plots from model results."""
     # scatter plots of individual data points
     scatter_plot_simple_regress(distributed_results, data, group_name)
@@ -15,6 +15,9 @@ def make_plots(distributed_results, household_results, data, group_name, numbins
                 400, 400, 'Primary Household Well Arsenic')
     plot_binned(binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_household',
                 400, 400, 'Primary Household Well Arsenic')
+    # area plot of contributions (for distributed model only)
+    plot_contributions(data, distributed_params, group_name)
+    plot_contributions_percentile(data, distributed_params, group_name)
 
 def format_scatter_plot(ax):
     """Do formatting common to scatter plots from all models."""
@@ -133,3 +136,55 @@ def plot_binned(data, group_name, xvar, yvar, xmax, ymax, xlabel):
     ax.yaxis.set_ticks([0, 100, 200, 300, 400])
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig('plots/' + group_name + '_' + xvar + '_' + yvar + '_binned.png')
+
+def plot_contributions(data, params, group_name):
+    # varies with an individual's primary well arsenic concentration
+    contrib_primary_well = params['fp'][0]*data['arsenic_ugl']
+    contrib_primary_well = contrib_primary_well.to_numpy().astype(float)
+    # both of these are constant across individuals, since we don't have a way to estimate them more granularly
+    contrib_other_well = np.repeat(params['fo'][0]*params['avgAs'][0], contrib_primary_well.shape[0])
+    contrib_other_well = contrib_other_well.astype(float)
+    contrib_food = np.repeat(params['Mf'][0]/params['Q'][0], contrib_primary_well.shape[0])
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_ylabel(r'Contribution to Urinary Arsenic ($\mu g/L$)', fontsize=18)
+    ax.set_xlabel(r'Primary Household Well Arsenic Concentration ($\mu g/L$)', fontsize=18)
+    print(type(data['arsenic_ugl'].to_numpy().astype(float)), data['arsenic_ugl'].to_numpy().astype(float).shape, data['arsenic_ugl'].to_numpy().astype(float).dtype)
+    print(type(contrib_primary_well), contrib_primary_well.shape, contrib_primary_well.dtype)
+    print(type(contrib_other_well), contrib_other_well.shape, contrib_other_well.dtype)
+    print(type(contrib_food), contrib_food.shape, contrib_food.dtype)
+    print(max(data['arsenic_ugl']))
+    ax.stackplot(data['arsenic_ugl'].to_numpy().astype(float), contrib_primary_well, contrib_other_well, contrib_food)
+    plt.savefig('plots/' + group_name + '_contrib_plot.png')
+    # fig, ax = plt.subplots(figsize=(8, 6))
+    # ax.stackplot([1, 2, 10], [1, 3, 5], [2, 2, 2], [3, 3, 3])
+    # plt.savefig('plots/test.png')
+
+def plot_contributions_percentile(data, params, group_name):
+    percentile = np.linspace(0, 100, 10000)
+    primary_well_arsenic = np.percentile(data['arsenic_ugl'], percentile)
+    contrib_primary_well = params['fp'][0]*primary_well_arsenic
+    contrib_primary_well = contrib_primary_well.astype(float)
+    contrib_other_well = np.repeat(params['fo'][0]*params['avgAs'][0], contrib_primary_well.shape[0])
+    contrib_other_well = contrib_other_well.astype(float)
+    contrib_food = np.repeat(params['Mf'][0]/params['Q'][0], contrib_primary_well.shape[0])
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_ylabel(r'Contribution to Urinary Arsenic ($\mu g/L$)', fontsize=18)
+    ax.set_xlabel(r'Primary Household Well Arsenic Percentile', fontsize=18)
+    print(type(percentile), percentile.shape, percentile.dtype)
+    print(type(contrib_primary_well), contrib_primary_well.shape, contrib_primary_well.dtype)
+    print(type(contrib_other_well), contrib_other_well.shape, contrib_other_well.dtype)
+    print(type(contrib_food), contrib_food.shape, contrib_food.dtype)
+    ax.stackplot(percentile, contrib_primary_well, contrib_other_well, contrib_food)
+
+    ax.set_xlim([0, 100])
+    ax.set_ylim([0, 600])
+    # ax.xaxis.set_ticks([0, 100, 200, 300, 400])
+    # ax.yaxis.set_ticks([0, 100, 200, 300, 400])
+
+    ax2 = ax.twiny()
+    ax2_tick_locations = [0, 20, 40, 60, 80, 100]
+    ax2.set_xlim(ax.get_xlim())
+    ax2.set_xticks(ax2_tick_locations)
+    ax2.set_xticklabels(np.percentile(data['arsenic_ugl'], ax2_tick_locations))
+    ax2.set_xlabel(r'Contribution to Urinary Arsenic ($\mu g/L$)', fontsize=18)
+    plt.savefig('plots/' + group_name + '_contrib_plot_percentile.png')

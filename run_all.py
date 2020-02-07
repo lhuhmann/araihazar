@@ -31,7 +31,7 @@ def make_subset(data, group_name):
 def run_all():
     # parameters that go into the mass balance equation and their uncertainties
     parameters_with_uncertainties = {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                     'mb':(0, 0), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}
+                                     'mb':(0, 0), 'Mf':(96, 6), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}
 
     # which column to use for neighbor well arsenic
     household_well_as = "other_as_50m"
@@ -44,11 +44,11 @@ def run_all():
     # get the correct subset of the data
     data = make_subset(data, group_name)
     # run regressions
-    simple_results, two_slope_results, both_data = run_regressions(data, group_name, household_well_as)
+    distributed_results, household_results, data = run_regressions(data, group_name, household_well_as)
     # calculate parameter values
-    calculate_parameters(simple_results, two_slope_results, parameters_with_uncertainties, group_name)
+    distributed_params, household_params = calculate_parameters(distributed_results, household_results, parameters_with_uncertainties, group_name)
     # plot results
-    make_plots(simple_results, two_slope_results, both_data, group_name, numbins, household_well_as)
+    make_plots(distributed_results, distributed_params, household_results, household_params, data, group_name, numbins, household_well_as)
 
 if __name__ == "__main__":
     run_all()

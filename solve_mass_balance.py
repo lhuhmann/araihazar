@@ -6,8 +6,9 @@ import sympy as sym
 def calculate_parameters(distributed_results, household_results, ext_params, group_name):
     """Calculate parameters for distributed well model and household well model
     and save to csv files."""
-    solve_params_distributed(distributed_results, group_name, ext_params)
-    solve_params_household(household_results, group_name, ext_params)
+    distributed_params = solve_params_distributed(distributed_results, group_name, ext_params)
+    household_params = solve_params_household(household_results, group_name, ext_params)
+    return distributed_params, household_params
 
 # adapted function from Jason
 def propagate_uncertainty(expr, values=None, uncertainties=None, d=sym.symbols('d', cls=sym.Function)):
@@ -97,6 +98,7 @@ def solve_params_distributed(model, group_name, ext_params):
         writer = csv.writer(savefile)
         for row in apply_formatting(solutions).items():
             writer.writerow(row)
+    return solutions
 
 def solve_params_household(model, group_name, ext_params):
     """Solve for parameters and uncertainties for distributed well model and save to csv."""
@@ -129,7 +131,6 @@ def solve_params_household(model, group_name, ext_params):
     vfrac_primary_well, dfrac_primary_well = propagate_uncertainty(frac_primary_well, values, uncertainties)
     vfrac_other_well, dfrac_other_well = propagate_uncertainty(frac_other_well, values, uncertainties)
     vfrac_household_well, dfrac_household_well = propagate_uncertainty(frac_household_well, values, uncertainties)
-    print(model.nobs)
     solutions =  {'nobs':model.nobs, 'r2':model.rsquared, 'r2_adj':model.rsquared_adj,
                 'intercept':(model.params[0], model.bse[0]),
                 'slope_primary':(model.params[1], model.bse[1]),
@@ -140,11 +141,11 @@ def solve_params_household(model, group_name, ext_params):
                 'frac_other_well':(vfrac_other_well, dfrac_other_well)
                 }
     solutions.update(ext_params)
-    print(solutions)
     with open(os.path.abspath('output_data/' + group_name + '_household_solved.csv'), "w") as savefile:
         writer = csv.writer(savefile)
         for row in apply_formatting(solutions).items():
             writer.writerow(row)
+    return solutions
 
 if __name__ == "__main__":
     import doctest
