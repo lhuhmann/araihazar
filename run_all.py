@@ -7,26 +7,29 @@ from plots import make_plots
 from solve_mass_balance import calculate_parameters, apply_formatting
 
 #%%
-def make_subset(data, group_name):
+def make_subset(data, group_name): # pylint: disable=too-many-return-statements
     """Given a group name and the full data set, return the subset of the data that corresponds
     to the group name."""
     if group_name == 'did_not_know':
         # keep only the rows where people did not know their well As
         # when their urine As was measured
         return data[data['knew_well_as'] == False]
-    elif group_name == 'women':
+    if group_name == 'may_have_known':
+        # keep only the rows where people may have known their well As
+        # when their urine As was measured
+        return data[data['knew_well_as'] == True]
+    if group_name == 'women':
         return data[data['sex'] == 'female']
-    elif group_name == 'women_did_not_know':
+    if group_name == 'women_did_not_know':
         return data[(data['knew_well_as'] == False) & (data['sex'] == 'female')]
-    elif group_name == 'men':
+    if group_name == 'men':
         return data[data['sex'] == 'male']
-    elif group_name == 'men_did_not_know':
+    if group_name == 'men_did_not_know':
         return data[(data['knew_well_as'] == False) & (data['sex'] == 'male')]
-    elif group_name == 'all':
+    if group_name == 'all':
         return data
-    else:
-        assert False, 'Group does not exist'
-    return data
+    assert False, 'Group does not exist'
+    return False
 
 def run_one(parameters_with_uncertainties, household_well_as, group_name, data, numbins):
     """Run the two mass balance models for one set of input parameters. Outputs the data with predicted
@@ -47,13 +50,11 @@ def run_many():
     # parameters that may change across runs:
     # parameters that go into the mass balance equation and their uncertainties
     parameters_with_uncertainties = [{'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                     'mb':(0, 0), 'Mf':(96, 6), 'Q':(3, 1), 'avgAs':(95.2, 1.4)},
-                                     {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                     'mb':(0, 0), 'Mf':(96, 6), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
+                                     'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
     # which column to use for household well arsenic
-    household_well_as = ['other_as_50m', 'other_as_50m']
+    household_well_as = ['other_as_50m']
     # which subset of the data to look at
-    group_name = ['all', 'did_not_know']
+    group_name = ['did_not_know']
 
     # parameters that I don't expect to change across runs:
     # full dataset
