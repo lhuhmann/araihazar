@@ -11,12 +11,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="400mm"
-   height="297mm"
-   viewBox="0 0 400 297"
+   height="155mm"
+   viewBox="0 0 400 155"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="subset_regression_scatterplots.svg"
+   sodipodi:docname="subset_comparison.svg"
    inkscape:export-filename="C:\Users\Britt\GitHub\araihazar\plots\regression_scatterplots.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
@@ -29,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.57881082"
-     inkscape:cx="149.1257"
-     inkscape:cy="629.75852"
+     inkscape:zoom="0.79148714"
+     inkscape:cx="821.39672"
+     inkscape:cy="300.53875"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,38 +55,21 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(0,-142)">
     <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\did_not_know_household_model_primary_well.png"
-       xlink:href="did_not_know_household_model_primary_well.png"
-       y="143.31488"
-       x="3.8553591"
-       id="image3754"
-       preserveAspectRatio="none"
-       height="152.39999"
-       width="203.2" />
-    <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\did_not_know_arsenic_ugl_urine_as_pred_household_binned.png"
-       xlink:href="did_not_know_arsenic_ugl_urine_as_pred_household_binned.png"
-       y="143.31488"
-       x="191.93631"
-       id="image3765"
-       preserveAspectRatio="none"
-       height="152.39999"
-       width="203.2" />
-    <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\did_not_know_distributed_model.png"
-       xlink:href="did_not_know_distributed_model.png"
-       y="2.329756"
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned.png"
+       xlink:href="subset_comparison_binned.png"
+       y="143.08797"
        x="3.8553591"
        id="image3732"
        preserveAspectRatio="none"
        height="152.39999"
        width="203.2" />
     <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\did_not_know_arsenic_ugl_urine_as_pred_distributed_binned.png"
-       xlink:href="did_not_know_arsenic_ugl_urine_as_pred_distributed_binned.png"
-       y="2.329756"
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned_inset.png"
+       xlink:href="subset_comparison_binned_inset.png"
+       y="143.08797"
        x="191.93631"
        id="image3743"
        preserveAspectRatio="none"
@@ -96,49 +79,37 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="3.8192546"
-       y="16.078863"
+       y="156.83688"
        id="text3774"><tspan
          sodipodi:role="line"
          id="tspan3772"
          x="3.8192546"
-         y="16.078863"
+         y="156.83688"
          style="stroke-width:0.26458332">a</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="194.29416"
-       y="18.207935"
+       y="158.96588"
        id="text3774-2"><tspan
          sodipodi:role="line"
          id="tspan3772-4"
          x="194.29416"
-         y="18.207935"
+         y="158.96588"
          style="stroke-width:0.26458332">b</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="3.8140869"
-       y="157.0318"
-       id="text3774-2-3"
-       inkscape:transform-center-x="-68.791667"
-       inkscape:transform-center-y="-68.413682"><tspan
-         sodipodi:role="line"
-         id="tspan3772-4-4"
-         x="3.8140869"
-         y="157.0318"
-         style="stroke-width:0.26458332">c</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="194.69206"
-       y="157.00079"
-       id="text3774-2-3-1"
-       inkscape:transform-center-x="-68.791667"
-       inkscape:transform-center-y="-68.413682"><tspan
-         sodipodi:role="line"
-         id="tspan3772-4-4-2"
-         x="194.69206"
-         y="157.00079"
-         style="stroke-width:0.26458332">d</tspan></text>
+    <rect
+       id="rect3722"
+       width="34.275112"
+       height="44.778778"
+       x="29.852516"
+       y="93.007782"
+       style="opacity:0;fill:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       style="opacity:1;fill:none;stroke:#5b5555;stroke-width:0.19872697;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99014779"
+       id="rect4529"
+       width="31.656527"
+       height="29.128502"
+       x="29.319681"
+       y="249.61386" />
   </g>
 </svg>

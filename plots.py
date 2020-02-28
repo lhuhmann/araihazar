@@ -4,42 +4,47 @@ from matplotlib.offsetbox import AnchoredText
 import scipy.stats as stats
 import numpy as np
 
-def make_plots(distributed_results, distributed_params, household_results, household_params, data, group_name, numbins, household_well_as):
+def make_plots(distributed_results, distributed_params, household_results, household_params,
+               data_subset, group_name, numbins, household_well_as):
     """Make plots from model results."""
     # scatter plots of individual data points
-    scatter_plot_simple_regress(distributed_results, data, group_name)
-    scatter_plot_multiple_regress(household_results, data, group_name, household_well_as)
-    # scatter plots of binned data
-    binned_data = get_binned_data(data, numbins, ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
+    scatter_plot_simple_regress(distributed_results, data_subset, group_name, xmax=600, ymax=1000)
+    scatter_plot_multiple_regress(household_results, data_subset, group_name, household_well_as, xmax=600, ymax=1000)
+    # scatter plots of binned data_subset
+    binned_data = get_binned_data(data_subset, numbins, ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
                     'urine_as_pred_household'])
-    plot_binned(distributed_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_distributed',
+    plot_binned_distributed(distributed_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_distributed',
                 400, 400, 'Primary Household Well Arsenic')
-    plot_binned(household_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_household',
+    plot_binned_household(household_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_household',
                 400, 400, 'Primary Household Well Arsenic')
     # area plot of contributions (for distributed model only)
-    plot_contributions(data, distributed_params, group_name)
-    plot_contributions_percentile(data, distributed_params, group_name)
+    plot_contributions(data_subset, distributed_params, group_name)
+    plot_contributions_percentile(data_subset, distributed_params, group_name)
 
 def format_scatter_plot(ax):
     """Do formatting common to scatter plots from all models."""
     ax.tick_params(axis='both', labelsize=16)
     ax.set_ylabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
-    ax.set_ylim([0, 1000])
-    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000])
     return ax
 
-def scatter_plot_simple_regress(results, data, group_name):
+def scatter_plot_simple_regress(results, data, group_name, xmax, ymax):
     """Make scatter plot from distributed wells model results"""
     fig, ax = plt.subplots(figsize=(8, 6))
     ax = format_scatter_plot(ax)
     ax.set_xlabel(r'Primary Household Well Arsenic ($\mu g/L$)', fontsize=18)
-    ax.scatter(data.arsenic_ugl, data.urine_as, marker='o', s=5, c='k', alpha=.2, edgecolors='none')
+    ax.scatter(data.arsenic_ugl, data.urine_as, marker='o', s=15, c='k', alpha=.3, edgecolors='none')
     #ax.scatter(data.arsenic_ugl, data['urine_as_pred_distributed'], marker='o', s=5, c='r', edgecolors='none')
     # switch this out for the above line of code to make a line rather than scatter for the fit
-    ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0], 'r')
-    ax.set_xlim([0, 500])
-    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500])
-    print(results.pvalues)
+    ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0], 'r', linewidth=3)
+    ax.set_xlim([0, xmax])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500, 600])
+    ax.set_ylim([0, ymax])
+    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000])
+    outside_plot_bounds = data[(data.arsenic_ugl > xmax) | (data.urine_as > ymax)]
+    # print(outside_plot_bounds.arsenic_ugl)
+    # print(outside_plot_bounds.urine_as)
+    print(f'there are {outside_plot_bounds.shape[0]} data points outside the plot bounds')
+    # print(results.pvalues)
     # using latex math formatting according to https://matplotlib.org/tutorials/text/mathtext.html
     ax.add_artist(AnchoredText(
             fr'$R^2 = {results.rsquared:.2f}$' +
@@ -50,21 +55,23 @@ def scatter_plot_simple_regress(results, data, group_name):
             '\n' +
             fr'$intercept = {results.params[0]:.0f}$',
             loc=2, frameon=False, prop=dict(size=14)))
-    print('saving figure as plots/' + group_name + '_distributed_model.png')
+    # print('saving figure as plots/' + group_name + '_distributed_model.png')
     plt.savefig('plots/' + group_name + '_distributed_model.png', dpi=600)
 
-def scatter_plot_multiple_regress(results, data, group_name, household_well_as):
+def scatter_plot_multiple_regress(results, data, group_name, household_well_as, xmax, ymax):
     """Make scatter plots from household well model results"""
     # urinary As vs primary well As
     fig, ax = plt.subplots(figsize=(8, 6))
     ax = format_scatter_plot(ax)
     ax.set_xlabel(r'Primary Household Well Arsenic ($\mu g/L$)', fontsize=18)
-    ax.scatter(data.arsenic_ugl, data.urine_as, marker='o', s=5, c='k', alpha=.2, edgecolors='none')
-    ax.scatter(data.arsenic_ugl, data['urine_as_pred_household'], marker='o', s=5, c='r', edgecolors='none')
-    ax.set_xlim([0, 800])
-    ax.xaxis.set_ticks([0, 200, 400, 600, 800])
+    ax.scatter(data.arsenic_ugl, data.urine_as, marker='o', s=15, c='k', alpha=.3, edgecolors='none')
+    ax.scatter(data.arsenic_ugl, data['urine_as_pred_household'], marker='o', s=15, c='r', edgecolors='none')
+    ax.set_xlim([0, xmax])
+    ax.xaxis.set_ticks([0, 200, 400, 600])
+    ax.set_ylim([0, ymax])
+    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000])
     ax.add_artist(AnchoredText(
-            fr'$R^2 = {results.rsquared:.3f}$' +
+            fr'$R^2 = {results.rsquared:.2f}$' +
             '\n' +
             fr'$n = {int(results.nobs)}$' +
             '\n' +
@@ -127,24 +134,43 @@ def get_binned_data(data, nbins, columns):
         # print("binned data length is " + str(binned_data.shape[0]))
     return binned_data
 
-def plot_binned(results, binned_data, group_name, xvar, yvar, xmax, ymax, xlabel):
-    """Plot binned data."""
+def plot_binned_distributed(results, binned_data, group_name, xvar, yvar, xmax, ymax, xlabel):
+    """Plot binned data for distributed well model."""
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_ylabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
+    ax.set_xlabel(xlabel + r' ($\mu g/L$)', fontsize=18)
+    # zorder=1 is needed to ensure the fit line is in front of the markers, as discussed in https://github.com/matplotlib/matplotlib/issues/409
+    ax.errorbar(binned_data[xvar + '_mean'], binned_data.urine_as_mean, 
+                yerr=binned_data.urine_as_sem, xerr=binned_data[xvar + '_sem'],
+                fmt='o', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
+    # ax.errorbar(data[xvar + '_mean'], data[yvar+'_mean'],
+    #             yerr=data[yvar+'_sem'], xerr=data[xvar+'_sem'],
+    #             fmt='o', markersize=5, mfc='r', mec='none', ecolor='r', capsize=2)
+    ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0], 'r', linewidth=3)
+    #xmax=300
+    #ymax=300
+    ax.set_xlim([0, xmax])
+    ax.set_ylim([0, ymax])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.yaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.tick_params(axis='both', labelsize=16)
+    plt.savefig('plots/' + group_name + '_' + xvar + '_' + yvar + '_binned.png', dpi=600)
+
+def plot_binned_household(results, binned_data, group_name, xvar, yvar, xmax, ymax, xlabel):
+    """Plot binned data for household well model."""
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_ylabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
     ax.set_xlabel(xlabel + r' ($\mu g/L$)', fontsize=18)
     ax.errorbar(binned_data[xvar + '_mean'], binned_data.urine_as_mean, 
                 yerr=binned_data.urine_as_sem, xerr=binned_data[xvar + '_sem'],
-                fmt='o', markersize=5, mfc='k', mec='none', ecolor='k', capsize=2)
-    # ax.errorbar(data[xvar + '_mean'], data[yvar+'_mean'],
-    #             yerr=data[yvar+'_sem'], xerr=data[xvar+'_sem'],
-    #             fmt='o', markersize=5, mfc='r', mec='none', ecolor='r', capsize=2)
-    ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0], 'r')
-    xmax=300
-    ymax=300
+                fmt='o', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2)
+    ax.errorbar(binned_data[xvar + '_mean'], binned_data[yvar+'_mean'],
+                yerr=binned_data[yvar+'_sem'], xerr=binned_data[xvar+'_sem'],
+                fmt='-o', markersize=10, mfc='r', mec='none', ecolor='r', capsize=2, c='r', linewidth=1)
     ax.set_xlim([0, xmax])
     ax.set_ylim([0, ymax])
-    ax.xaxis.set_ticks([0, 100, 200, 300])
-    ax.yaxis.set_ticks([0, 100, 200, 300])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.yaxis.set_ticks([0, 100, 200, 300, 400])
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig('plots/' + group_name + '_' + xvar + '_' + yvar + '_binned.png', dpi=600)
 
@@ -174,15 +200,24 @@ def plot_contributions_percentile(data, params, group_name):
 
     contrib_other_well = np.repeat(params['frac_other_well'][0]*params['avgAs'][0]*params['Q'][0], contrib_primary_well.shape[0])
     contrib_other_well = contrib_other_well.astype(float)
-
     contrib_food = np.repeat(params['Mf'][0], contrib_primary_well.shape[0])
+
+    contrib_data = pd.DataFrame(data=[percentile, contrib_primary_well, contrib_other_well, 
+                                contrib_food], index=['percentile', 'contrib_primary_well',
+                                'contrib_other_well', 'contrib_food']).transpose()
+    contrib_data.to_csv('test.csv')
+    # find percentile where contrib_primary_well is closest in size to the sum of the other contributions
+    contrib_data['contrib_diff'] = contrib_data.contrib_primary_well - contrib_data.contrib_other_well - contrib_data.contrib_food
+    min_diff = abs(contrib_data.contrib_diff).min()
+    min_diff_percentile = contrib_data[(abs(contrib_data.contrib_diff) - min_diff) < .0001].percentile.iloc[0]
+    print(min_diff_percentile)
+
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_ylabel(r'Contribution to Arsenic Consumption ($\mu g/d$)', fontsize=16)
     ax.set_xlabel(r'Primary Household Well Arsenic Percentile', fontsize=16)
-    contrib_data = pd.DataFrame(data=[percentile, contrib_primary_well, contrib_other_well, contrib_food]).transpose()
-    contrib_data.to_csv('test.csv')
-    ax.stackplot(percentile, contrib_primary_well, contrib_other_well, contrib_food)
 
+    plt.axvline(x=min_diff_percentile, linewidth=3, color='k', linestyle='dashed')
+    ax.stackplot(percentile, contrib_primary_well, contrib_other_well, contrib_food)
     ax.set_xlim([0, 100])
     ax.set_ylim([0, 1200])
     # ax.xaxis.set_ticks([0, 100, 200, 300, 400])

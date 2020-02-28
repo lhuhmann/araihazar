@@ -132,14 +132,14 @@ def solve_params_household(model, group_name, ext_params):
     vfrac_other_well, dfrac_other_well = propagate_uncertainty(frac_other_well, values, uncertainties)
     vfrac_household_well, dfrac_household_well = propagate_uncertainty(frac_household_well, values, uncertainties)
     solutions =  {'nobs':model.nobs, 'r2':model.rsquared, 'r2_adj':model.rsquared_adj,
-                'intercept':(model.params[0], model.bse[0]),
-                'slope_primary':(model.params[1], model.bse[1]),
-                'slope_household':(model.params[2], model.bse[2]),
-                'fu':(vfu, dfu), 'fp':(vfp, dfp), 'fh':(vfh, dfh), 'fo':(vfo, dfo),
-                'frac_primary_well':(vfrac_primary_well, dfrac_primary_well),
-                'frac_household_well':(vfrac_household_well, dfrac_household_well),
-                'frac_other_well':(vfrac_other_well, dfrac_other_well)
-                }
+                  'intercept':(model.params[0], model.bse[0]),
+                  'slope_primary':(model.params[1], model.bse[1]),
+                  'slope_household':(model.params[2], model.bse[2]),
+                  'fu':(vfu, dfu), 'fp':(vfp, dfp), 'fh':(vfh, dfh), 'fo':(vfo, dfo),
+                  'frac_primary_well':(vfrac_primary_well, dfrac_primary_well),
+                  'frac_household_well':(vfrac_household_well, dfrac_household_well),
+                  'frac_other_well':(vfrac_other_well, dfrac_other_well)
+                 }
     solutions.update(ext_params)
     with open(os.path.abspath('output_data/' + group_name + '_household_solved.csv'), "w") as savefile:
         writer = csv.writer(savefile)

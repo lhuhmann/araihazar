@@ -33,7 +33,7 @@ def get_data_matlab():
 
     return data
 
-def make_plot(data, plotname):
+def make_plot(data, plotname, xmax, ymax):
     # get data subset
     not_know_subset = make_subset(data, 'did_not_know')
     print(not_know_subset.shape[0])
@@ -49,18 +49,22 @@ def make_plot(data, plotname):
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_ylabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
     ax.set_xlabel(r'Primary Well Arsenic ($\mu g/L$)', fontsize=18)
-    ax.errorbar(binned_data_may_know['arsenic_ugl_mean'], binned_data_may_know['urine_as_mean'],
-                xerr=binned_data_may_know['arsenic_ugl_sem'], yerr=binned_data_may_know['urine_as_sem'], 
-                fmt='-ob', markersize=5, mfc='b', mec='none', ecolor='b', capsize=2)
     ax.errorbar(binned_data_not_know['arsenic_ugl_mean'], binned_data_not_know['urine_as_mean'],
                 xerr=binned_data_not_know['arsenic_ugl_sem'], yerr=binned_data_not_know['urine_as_sem'], 
-                fmt='-ok', markersize=5, mfc='k', mec='none', ecolor='k', capsize=2)
-    #ax.set_xlim([0, xmax])
-    #ax.set_ylim([0, ymax])
+                fmt='ok', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2)
+    ax.errorbar(binned_data_may_know['arsenic_ugl_mean'], binned_data_may_know['urine_as_mean'],
+                xerr=binned_data_may_know['arsenic_ugl_sem'], yerr=binned_data_may_know['urine_as_sem'], 
+                fmt='ob', markersize=10, mfc='b', mec='none', ecolor='b', capsize=2)
+    # outside_plot_bounds = data[(data.arsenic_ugl > xmax) | (data.urine_as > ymax)]
+    # print(outside_plot_bounds.arsenic_ugl)
+    # print(outside_plot_bounds.urine_as)
+    # print(f'there are {outside_plot_bounds.shape[0]} data points outside the plot bounds')
     ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500])
-    ax.yaxis.set_ticks([0, 100, 200, 300, 400, 500])
+    ax.yaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.set_xlim([0, xmax])
+    ax.set_ylim([0, ymax])
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig(f'plots/{plotname}.png')
 
 data = get_data()
-make_plot(data, 'subset_comparison_binned')
+make_plot(data, 'subset_comparison_binned', 500, 400)

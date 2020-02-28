@@ -5,44 +5,24 @@ import pandas as pd
 from regressions import run_regressions
 from plots import make_plots
 from solve_mass_balance import calculate_parameters, apply_formatting
+from compare_subsets import make_subset
+from compare_subsets import compare_subsets
 
 #%%
-def make_subset(data, group_name): # pylint: disable=too-many-return-statements
-    """Given a group name and the full data set, return the subset of the data that corresponds
-    to the group name."""
-    if group_name == 'did_not_know':
-        # keep only the rows where people did not know their well As
-        # when their urine As was measured
-        return data[data['knew_well_as'] == False]
-    if group_name == 'may_have_known':
-        # keep only the rows where people may have known their well As
-        # when their urine As was measured
-        return data[data['knew_well_as'] == True]
-    if group_name == 'women':
-        return data[data['sex'] == 'female']
-    if group_name == 'women_did_not_know':
-        return data[(data['knew_well_as'] == False) & (data['sex'] == 'female')]
-    if group_name == 'men':
-        return data[data['sex'] == 'male']
-    if group_name == 'men_did_not_know':
-        return data[(data['knew_well_as'] == False) & (data['sex'] == 'male')]
-    if group_name == 'all':
-        return data
-    assert False, 'Group does not exist'
-    return False
-
 def run_one(parameters_with_uncertainties, household_well_as, group_name, data, numbins):
     """Run the two mass balance models for one set of input parameters. Outputs the data with predicted
     values appended, the results of the two regressions, and the parameters for the two models."""
     # get the correct subset of the data
-    data = make_subset(data, group_name)
+    data_subset = make_subset(data, group_name)
     # run regressions
-    distributed_results, household_results, data = run_regressions(data, group_name, household_well_as)
+    distributed_results, household_results, data_subset = run_regressions(data_subset, group_name, household_well_as)
     # calculate parameter values
     distributed_params, household_params = calculate_parameters(distributed_results, household_results, parameters_with_uncertainties, group_name)
     # plot results
-    make_plots(distributed_results, distributed_params, household_results, household_params, data, group_name, numbins, household_well_as)
-    return data, distributed_results, distributed_params, household_results, household_params
+    make_plots(distributed_results, distributed_params, household_results, household_params, data_subset, group_name, numbins, household_well_as)
+    # compare subsets
+    compare_subsets(distributed_results, data)
+    return data_subset, distributed_results, distributed_params, household_results, household_params
 
 def run_many():
     """Run the two mass balance models for many sets input parameters. Saves one csv for each model,
@@ -51,6 +31,8 @@ def run_many():
     # parameters that go into the mass balance equation and their uncertainties
     parameters_with_uncertainties = [{'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
+    # parameters_with_uncertainties = [{'ff':(0.2, 0), 'fc':(0.12, 0), 'md':(0.06, 0),
+    #                                  'mb':(0, 0), 'Mf':(64, 0), 'Q':(3, 0), 'avgAs':(95.2, 0)}]
     # which column to use for household well arsenic
     household_well_as = ['other_as_50m']
     # which subset of the data to look at
