@@ -2,6 +2,7 @@
 import os
 import pandas as pd
 
+from uncertain_val import UncertainVal
 from regressions import run_regressions
 from plots import make_plots
 from solve_mass_balance import calculate_parameters, apply_formatting
@@ -30,7 +31,9 @@ def run_many():
     # parameters that may change across runs:
     # parameters that go into the mass balance equation and their uncertainties
     parameters_with_uncertainties = [{'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                     'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
+                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
+    parameters_with_uncertainties = [{k:UncertainVal(v[0], v[1]) for k, v in param_dict.items()}   
+                                     for param_dict in parameters_with_uncertainties] 
     # parameters_with_uncertainties = [{'ff':(0.2, 0), 'fc':(0.12, 0), 'md':(0.06, 0),
     #                                  'mb':(0, 0), 'Mf':(64, 0), 'Q':(3, 0), 'avgAs':(95.2, 0)}]
     # which column to use for household well arsenic

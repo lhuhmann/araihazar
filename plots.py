@@ -176,12 +176,12 @@ def plot_binned_household(results, binned_data, group_name, xvar, yvar, xmax, ym
 
 def plot_contributions(data, params, group_name):
     # varies with an individual's primary well arsenic concentration
-    contrib_primary_well = params['fp'][0]*data['arsenic_ugl']
+    contrib_primary_well = params['fp'].value*data['arsenic_ugl']
     contrib_primary_well = contrib_primary_well.to_numpy().astype(float)
     # both of these are constant across individuals, since we don't have a way to estimate them more granularly
-    contrib_other_well = np.repeat(params['fo'][0]*params['avgAs'][0], contrib_primary_well.shape[0])
+    contrib_other_well = np.repeat(params['fo'].value*params['avgAs'].value, contrib_primary_well.shape[0])
     contrib_other_well = contrib_other_well.astype(float)
-    contrib_food = np.repeat(params['Mf'][0]/params['Q'][0], contrib_primary_well.shape[0])
+    contrib_food = np.repeat(params['Mf'].value/params['Q'].value, contrib_primary_well.shape[0])
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_ylabel(r'Contribution to Urinary Arsenic ($\mu g/L$)', fontsize=18)
     ax.set_xlabel(r'Primary Household Well Arsenic Concentration ($\mu g/L$)', fontsize=18)
@@ -195,12 +195,12 @@ def plot_contributions(data, params, group_name):
 def plot_contributions_percentile(data, params, group_name):
     percentile = np.linspace(0, 100, 10000)
     primary_well_arsenic = np.percentile(data['arsenic_ugl'], percentile)
-    contrib_primary_well = params['frac_primary_well'][0]*primary_well_arsenic*params['Q'][0]
+    contrib_primary_well = params['frac_primary_well'].value*primary_well_arsenic*params['Q'].value
     contrib_primary_well = contrib_primary_well.astype(float)
 
-    contrib_other_well = np.repeat(params['frac_other_well'][0]*params['avgAs'][0]*params['Q'][0], contrib_primary_well.shape[0])
+    contrib_other_well = np.repeat(params['frac_other_well'].value*params['avgAs'].value*params['Q'].value, contrib_primary_well.shape[0])
     contrib_other_well = contrib_other_well.astype(float)
-    contrib_food = np.repeat(params['Mf'][0], contrib_primary_well.shape[0])
+    contrib_food = np.repeat(params['Mf'].value, contrib_primary_well.shape[0])
 
     contrib_data = pd.DataFrame(data=[percentile, contrib_primary_well, contrib_other_well, 
                                 contrib_food], index=['percentile', 'contrib_primary_well',
