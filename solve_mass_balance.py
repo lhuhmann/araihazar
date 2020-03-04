@@ -19,11 +19,11 @@ def propagate_uncertainty(expr, values=None, uncertainties=None, d=sym.symbols('
 
     >>> x, y = sym.symbols('x y')
     >>> propagate_uncertainty(x * y)
-    (x*y, sqrt(x**2*d(y)**2 + y**2*d(x)**2))
+    UncertainVal(x*y, sqrt(x**2*d(y)**2 + y**2*d(x)**2))
     >>> propagate_uncertainty(x * y, {x:2, y:3})
-    (6, sqrt(9*d(x)**2 + 4*d(y)**2))
+    UncertainVal(6, sqrt(9*d(x)**2 + 4*d(y)**2))
     >>> propagate_uncertainty(x * y, {x:20, y:30}, {x:2, y:3})
-    (600, 60*sqrt(2))
+    UncertainVal(600, 60*sqrt(2))
     """
     if values is None: values = {}
     if uncertainties is None: uncertainties = {}
@@ -55,7 +55,19 @@ def split_uncertainties(parameters_with_uncertainties):
     return params, uncertainties
 
 def apply_formatting(arg):
-    """Applies formatting to parameters for display."""
+    """Applies formatting to parameters for display.
+    >>> val_dict = {'key1':0.275349, 'key2':UncertainVal(0.5, 0.2)}
+    >>> apply_formatting(val_dict)
+    {'key1': '0.28', 'key2': '0.50+-0.20'}
+
+    >>> uval = UncertainVal(0.5, 0.2)
+    >>> apply_formatting(uval)
+    '0.50+-0.20'
+
+    >>> float_val = 0.590754
+    >>> apply_formatting(float_val)
+    '0.59'
+    """
     if isinstance(arg, dict):
         return {k:apply_formatting(v) for k, v in arg.items()}
     elif isinstance(arg, float):
@@ -141,8 +153,9 @@ def format_and_save_file(file_name, solutions):
     """Formats solutions and saves them as csv file with in output_data folder with file_name"""
     with open(os.path.abspath('output_data/' + file_name), "w") as savefile:
         writer = csv.writer(savefile)
-        for row in apply_formatting(solutions).items():
-            writer.writerow(row)
+        for value in apply_formatting(solutions).items():
+        # for value in solutions.items():
+            writer.writerow(value)
 
 if __name__ == "__main__":
     import doctest

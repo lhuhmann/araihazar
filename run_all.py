@@ -12,7 +12,18 @@ from compare_subsets import compare_subsets
 #%%
 def run_one(parameters_with_uncertainties, household_well_as, group_name, data, numbins):
     """Run the two mass balance models for one set of input parameters. Outputs the data with predicted
-    values appended, the results of the two regressions, and the parameters for the two models."""
+    values appended, the results of the two regressions, and the parameters for the two models.
+    
+    >>> parameters_with_uncertainties = {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
+                                         'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 
+                                         'avgAs':(95.2, 1.4)}
+    >>> household_well_as = ['other_as_50m']
+    >>> group_name = ['did_not_know']
+    # TODO: add some minimal amount of relevant data
+    >>> data = 
+    >>> numbins = 15
+    # TODO: add expected output given the data I choose
+    """
     # get the correct subset of the data
     data_subset = make_subset(data, group_name)
     # run regressions
@@ -31,11 +42,10 @@ def run_many():
     # parameters that may change across runs:
     # parameters that go into the mass balance equation and their uncertainties
     parameters_with_uncertainties = [{'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 'avgAs':(95.2, 1.4)}]
+                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 
+                                      'avgAs':(95.2, 1.4)}]
     parameters_with_uncertainties = [{k:UncertainVal(v[0], v[1]) for k, v in param_dict.items()}   
                                      for param_dict in parameters_with_uncertainties] 
-    # parameters_with_uncertainties = [{'ff':(0.2, 0), 'fc':(0.12, 0), 'md':(0.06, 0),
-    #                                  'mb':(0, 0), 'Mf':(64, 0), 'Q':(3, 0), 'avgAs':(95.2, 0)}]
     # which column to use for household well arsenic
     household_well_as = ['other_as_50m']
     # which subset of the data to look at
@@ -68,4 +78,8 @@ def run_many():
     all_household_params.to_csv('output_data/run_many_household_params.csv')
   
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     run_many()
+
+
