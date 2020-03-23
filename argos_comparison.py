@@ -1,5 +1,3 @@
-
-# imports
 import os
 import csv
 
