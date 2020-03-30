@@ -27,12 +27,24 @@ This code only needs to be run when the underlying data for the data analysis ar
 * Extract from the database the data for the data analysis stage by running '\ingest\get_data_from_db.pgsql'.
 
 # Data analysis
-## Code structure
+## Regression Based on Mass Balance
+This code runs linear regressions (based on the mass balance equations) on the observed data from Araihazar, Bangladesh. It then uses the parameters derived from the linear regressions along with other parameters from the scientific literature to solve the mass balance equations for fp, the average fraction of water an individual consumes from their primary well, and fu, the average fraction of water an individual loses via urine, along with their uncertainties.
 * The functions in 'run_all.py' set up the input parameters, load the data, and run the analysis.
 * The functions in 'regressions.py' run linear regressions on the input data for two different mass-balance models of water and arsenic consumption and excretion.
 * The functions in 'solve_mass_balance.py' use the input parameters and the parameters from the linear regressions to solve for the estimated fractions of water consumed from different sources and the uncertainties on these fractions, saving the results to csv files.
+* uncertain_val.py provides a class, UncertainVal, used for dealing with values with uncertainties. 
 * The functions in 'plots.py' make scatter plots of the original data compared with the model predictions.
-
-## Running the code
+### Running the code
 The code can be run with 'python3 run_all.py'.
-
+## Comparison of data for different subsets of the population.
+Some study participants were informed of the arsenic concentrations in their primary drinking water wells before their urinary arsenic was tested. We hypothesize that learning their primary well arsenic concentrations may have caused them to alter their behavior. Specifically, we hypothesize that participants with the highest- and lowest-arsenic primary wells who had been informed of their primary well arsenic concentrations will have lower urinary arsenic concentrations than participants who had not been informed. This code tests that hypothesis. 
+### Running the code
+The code can be run with 'python3 compare_subsets.py'.
+## Comparison with Argos et al. (2010)
+Uses the estimated fraction of water an individual consumes from their primary well and from other wells to estimate the average amount of arsenic in *all* water consumed by an individual. The output table maps each of the primary well arsenic categories from Argos et al. (first column) to the estimated mean arsenic in all water consumed for an individual with the mean primary well arsenic for that category (second column). 
+### Running the code
+The code can be run with 'python3 argos_comparison.py'.
+## Comparison with Ahsan et al. (2006)
+Uses the estimated fraction of water an individual consumes from their primary well and from other wells to estimate the average amount of arsenic in *all* water consumed by an individual. Compares the min, max, mean, and median arsenic concentrations in primary well water versus all well water for individuals in four primary well arsenic categories. These four categories are based on the categories in Ahsan et al. I was asked to calculate these values, but I don't believe this is a useful comparison, since Ahsan et al. already incorporate self-reports of water consumption from both primary wells versus other wells into their arsenic exposure estimates.
+### Running the code
+The code can be run with 'python3 ahsan_comparison.py'.
