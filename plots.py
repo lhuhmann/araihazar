@@ -205,7 +205,6 @@ def plot_contributions_percentile(data, params, group_name):
     contrib_data = pd.DataFrame(data=[percentile, contrib_primary_well, contrib_other_well, 
                                 contrib_food], index=['percentile', 'contrib_primary_well',
                                 'contrib_other_well', 'contrib_food']).transpose()
-    contrib_data.to_csv('test.csv')
     # find percentile where contrib_primary_well is closest in size to the sum of the other contributions
     contrib_data['contrib_diff'] = contrib_data.contrib_primary_well - contrib_data.contrib_other_well - contrib_data.contrib_food
     min_diff = abs(contrib_data.contrib_diff).min()

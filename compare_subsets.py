@@ -11,9 +11,9 @@ from plots import get_binned_data
 def compare_subsets(distributed_results, data):
     # get data subset
     not_know_subset = make_subset(data, 'did_not_know')
-    not_know_subset.to_csv('not_know_subset.csv')
+    not_know_subset.to_csv('../araihazar-data/analysis_output/not_know_subset.csv')
     may_know_subset = make_subset(data, 'may_have_known')
-    may_know_subset.to_csv('may_know_subset.csv')
+    may_know_subset.to_csv('../araihazar-data/analysis_output/may_know_subset.csv')
 
     # comparison of full data with data subset
     plot_group_comparison(distributed_results, not_know_subset, may_know_subset, 'subset_comparison_binned', xmax=500, ymax=400, tick_spacing=100)
