@@ -8,7 +8,7 @@ from uncertain_val import UncertainVal
 from solve_mass_balance import apply_formatting
 
 # bring in data
-data = pd.read_csv(os.path.abspath("data_for_regressions.csv"))
+data = pd.read_csv('../araihazar-data/to_analyze/data_for_regressions.csv')
 
 # fraction of water from primary wells and other wells
 fp = 0.5
@@ -48,4 +48,4 @@ for category, min_val, max_val in zip(categories, min_As, max_As):
 solutions_dataframe = pd.concat({k: pd.DataFrame.from_dict(v, 'index')
                                  for k, v in solutions_dict.items()}, axis=1)
 solutions_dataframe.apply(apply_formatting)
-solutions_dataframe.to_csv('output_data/ahsan_table.csv')
+solutions_dataframe.to_csv('../araihazar-data/analysis_output/ahsan_table.csv')

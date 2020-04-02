@@ -14,7 +14,7 @@ CREATE TABLE wells
 );
 
 COPY wells ( well_id, union_name, village, owner_name, arsenic_ugl, latitude, longitude, depth, year )
-    FROM 'C:/Users/Britt/GitHub/araihazar/ingest/data/wells.csv'
+    FROM 'C:/Users/Britt/GitHub/araihazar-data/to_ingest/wells.csv'
     WITH 
           DELIMITER AS ','
           CSV HEADER ;

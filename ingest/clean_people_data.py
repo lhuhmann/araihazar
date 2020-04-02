@@ -6,14 +6,14 @@ import datetime
 
 #%% file imports
 # people data
-age = pd.read_csv(os.path.abspath("ingest/data_cleaning/age.csv"))
-urine_as = pd.read_csv(os.path.abspath("ingest/data_cleaning/baseline_urine_as.csv"))
-sex = pd.read_csv(os.path.abspath("ingest/data_cleaning/sex.csv"))
-well = pd.read_csv(os.path.abspath("ingest/data_cleaning/subject_well_mapping.csv"))
-interview_date = pd.read_csv(os.path.abspath("ingest/data_cleaning/interview_dates.csv"))
+age = pd.read_csv(os.path.abspath("../araihazar-data/to_clean/age.csv"))
+urine_as = pd.read_csv(os.path.abspath("../araihazar-data/to_clean/baseline_urine_as.csv"))
+sex = pd.read_csv(os.path.abspath("../araihazar-data/to_clean/sex.csv"))
+well = pd.read_csv(os.path.abspath("../araihazar-data/to_clean/subject_well_mapping.csv"))
+interview_date = pd.read_csv(os.path.abspath("../araihazar-data/to_clean/interview_dates.csv"))
 
 # well data
-all_wells = pd.read_csv(os.path.abspath("ingest/data/wells.csv"))
+all_wells = pd.read_csv(os.path.abspath("../araihazar-data/to_ingest/wells.csv"))
 
 #%% 
 
@@ -56,4 +56,4 @@ people = people.astype({'Index well': int})
 people = people[['SubjectID', 'Sex', 'Age','Index well', 'UrineAs', 'UrineCreat', 'UrAsgmCr', 'DateInt', 'knew_well_arsenic']]
 print(people.head(5))
 
-people.to_csv(os.path.abspath("ingest/data/people.csv"), index=False)
+people.to_csv(os.path.abspath("../araihazar-data/to_clean/people.csv"), index=False)

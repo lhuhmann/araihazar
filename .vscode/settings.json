@@ -1,6 +1,6 @@
 {
     "python.linting.enabled": true,
-    "python.pythonPath": "C:\\Users\\Britt\\.virtualenvs\\araihazar-7nSW1mWv\\Scripts\\python.exe",
+    "python.pythonPath": "/home/britt/.local/share/virtualenvs/araihazar-O8lqRIMM/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.pycodestyleEnabled": false
 }

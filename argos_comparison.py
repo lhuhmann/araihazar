@@ -8,7 +8,7 @@ import scipy.stats as stats
 from solve_mass_balance import apply_formatting
 
 # bring in data
-data = pd.read_csv(os.path.abspath("data_for_regressions.csv"))
+data = pd.read_csv('../araihazar-data/to_analyze/data_for_regressions.csv')
 
 # fraction of water from primary wells and other wells
 fp = 0.5
@@ -32,7 +32,7 @@ for category, min_val, max_val in zip(categories, min_As, max_As):
     sem_As_water_consumed = (fp*sem_As_primary_well + fo*sem_As_all_wells)/(fp+fo)
     solutions.update({category: (mean_As_water_consumed, sem_As_water_consumed)})
     print(num_subj, mean_As_primary_well, sem_As_primary_well)
-    with open(os.path.abspath('output_data/argos_table.csv'), "w") as savefile:
+    with open(os.path.abspath('../araihazar-data/analysis_output/argos_table.csv'), "w") as savefile:
         writer = csv.writer(savefile)
         for row in apply_formatting(solutions).items():
             writer.writerow(row)

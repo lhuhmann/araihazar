@@ -14,7 +14,7 @@ CREATE TABLE people
 );
 
 COPY people ( subject_id, sex, age, well_id, urine_as, urine_creatinine, urine_as_gmcr, interview_date, knew_well_as )
-    FROM 'C:/Users/Britt/GitHub/araihazar/ingest/data/people.csv'
+    FROM 'C:/Users/Britt/GitHub/araihazar-data/to_ingest/people.csv'
     WITH 
           DELIMITER AS ','
           CSV HEADER ;

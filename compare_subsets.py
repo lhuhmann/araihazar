@@ -101,7 +101,7 @@ def compare_means(not_know_subset, may_know_subset, arsenic_ugl_lower_bound, ars
     p_value_one_tailed = p_value_two_tailed/2
     # we expect a positive test statistic if mean of not_know_subset is greater than mean of may_know_subset
     print(equal_var, test_statistic, p_value_one_tailed)
-    with open(os.path.abspath(f'output_data/well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}_urine_as_comparison.csv'), "w") as savefile:
+    with open(os.path.abspath(f'../araihazar-data/analysis_output/well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}_urine_as_comparison.csv'), "w") as savefile:
         writer = csv.writer(savefile)
         writer.writerow(['equal variance', 'test statistic', 'one-tailed p-value'])
         writer.writerow([equal_var, test_statistic, p_value_one_tailed])

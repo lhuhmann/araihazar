@@ -151,7 +151,7 @@ def solve_params_household(model, group_name, params):
 
 def format_and_save_file(file_name, solutions):
     """Formats solutions and saves them as csv file with in output_data folder with file_name"""
-    with open(os.path.abspath('output_data/' + file_name), "w") as savefile:
+    with open(os.path.abspath('../araihazar-data/analysis_output/' + file_name), "w") as savefile:
         writer = csv.writer(savefile)
         for value in apply_formatting(solutions).items():
         # for value in solutions.items():

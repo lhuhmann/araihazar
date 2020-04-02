@@ -53,7 +53,7 @@ def run_many():
 
     # parameters that I don't expect to change across runs:
     # full dataset
-    data = pd.read_csv(os.path.abspath("data_for_regressions.csv"))
+    data = pd.read_csv('../araihazar-data/to_analyze/data_for_regressions.csv')
     # number of bins for plotting results
     numbins = 15
 
@@ -71,11 +71,11 @@ def run_many():
     # save all distributed params to one csv as adjacent columns
     all_distributed_params = pd.DataFrame(all_distributed_params)
     all_distributed_params = all_distributed_params.T
-    all_distributed_params.to_csv('output_data/run_many_distributed_params.csv')
+    all_distributed_params.to_csv('../araihazar-data/analysis_output/run_many_distributed_params.csv')
     # save all household params to another csv as adjacent columns
     all_household_params = pd.DataFrame(all_household_params)
     all_household_params = all_household_params.T
-    all_household_params.to_csv('output_data/run_many_household_params.csv')
+    all_household_params.to_csv('../araihazar-data/analysis_output/run_many_household_params.csv')
   
 if __name__ == "__main__":
     import doctest
