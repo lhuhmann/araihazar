@@ -91,7 +91,7 @@ def compare_well_and_urine_as_means(not_know_subset, may_know_subset, arsenic_ug
     well_comparison = compare_means(not_know_subset, may_know_subset, 'arsenic_ugl')
     with open(os.path.abspath(f'../araihazar-data/analysis_output/well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}_well_and_urine_as_comparison.csv'), "w") as savefile:
         writer = csv.writer(savefile)
-        writer.writerow(['mean compared', 'urine equal variance', 'urine test statistic', 'urine one-tailed p-value'])
+        writer.writerow(['mean compared', 'equal variance', 'test statistic', 'one-tailed p-value'])
         writer.writerow(['urine'] + urine_comparison)
         writer.writerow(['well water'] + well_comparison)
 
