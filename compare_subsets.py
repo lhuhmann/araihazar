@@ -55,6 +55,7 @@ def make_subset(data, group_name): # pylint: disable=too-many-return-statements
     assert False, 'Group does not exist'
     return False
 
+
 def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, xmax, ymax, tick_spacing):
     # bin both and plot the binned data
     binned_data_may_know = get_binned_data(may_know_subset, 15, ['arsenic_ugl', 'urine_as'])
@@ -67,10 +68,10 @@ def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, x
     # as discussed in https://github.com/matplotlib/matplotlib/issues/409
     ax.errorbar(binned_data_not_know['arsenic_ugl_mean'], binned_data_not_know['urine_as_mean'],
                 xerr=binned_data_not_know['arsenic_ugl_sem'], yerr=binned_data_not_know['urine_as_sem'],
-                fmt='ok', linestyle='-.', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
+                fmt='ok', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
     ax.errorbar(binned_data_may_know['arsenic_ugl_mean'], binned_data_may_know['urine_as_mean'],
                 xerr=binned_data_may_know['arsenic_ugl_sem'], yerr=binned_data_may_know['urine_as_sem'],
-                fmt='ob', linestyle='-.', markersize=10, mfc='b', mec='none', ecolor='b', capsize=2, zorder=1)
+                fmt='ob', markersize=10, mfc='b', mec='none', ecolor='b', capsize=2, zorder=1)
     ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0],
                         'r', linewidth=3)
     ax.set_xlim([0, xmax])
@@ -80,6 +81,7 @@ def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, x
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig(f'plots/{plotname}.png')
 
+
 def compare_well_and_urine_as_means(not_know_subset, may_know_subset, arsenic_ugl_lower_bound, arsenic_ugl_upper_bound):
     """For the given data subsets, within the given bounds, checks if the first data subset has a
     significantly higher mean well arsenic and mean urinary arsenic than the second data subset."""
@@ -88,12 +90,43 @@ def compare_well_and_urine_as_means(not_know_subset, may_know_subset, arsenic_ug
     may_know_subset = may_know_subset[(may_know_subset.arsenic_ugl > arsenic_ugl_lower_bound) &
                                       (may_know_subset.arsenic_ugl < arsenic_ugl_upper_bound)]
     urine_comparison = compare_means(not_know_subset, may_know_subset, 'urine_as')
+    make_histograms(not_know_subset, may_know_subset, 
+                    arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, 
+                    'urine_as')
     well_comparison = compare_means(not_know_subset, may_know_subset, 'arsenic_ugl')
+    make_histograms(not_know_subset, may_know_subset, 
+                    arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, 
+                    'arsenic_ugl')
     with open(os.path.abspath(f'../araihazar-data/analysis_output/well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}_well_and_urine_as_comparison.csv'), "w") as savefile:
         writer = csv.writer(savefile)
         writer.writerow(['mean compared', 'equal variance', 'test statistic', 'one-tailed p-value'])
         writer.writerow(['urine'] + urine_comparison)
         writer.writerow(['well water'] + well_comparison)
+
+
+def make_histograms(not_know_subset, may_know_subset, 
+                    arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, to_compare):
+    """Compares histograms for the two subsets of the values in to_compare between the specified bounds."""
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_ylabel(r'Probability Density', fontsize=18)
+    if to_compare == 'arsenic_ugl':
+        ax.set_xlabel(r'Primary Well Arsenic ($\mu g/L$)', fontsize=18)
+    else:
+        ax.set_xlabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
+    bins = 15
+    alpha = 0.5
+    density = True
+    if arsenic_ugl_lower_bound == 0:
+        xmax = 500
+    else:
+        xmax = 2500
+    ax.set_xlim([0, xmax])
+    plt.hist(not_know_subset[to_compare], bins, alpha=alpha, color='black', density=density)
+    plt.hist(may_know_subset[to_compare], bins, alpha=alpha, color='blue', density=density)
+    ax.tick_params(axis='x', labelsize=16)
+    ax.tick_params(axis='y', labelsize=10)
+    plt.savefig(f'plots/{to_compare}_comparison_well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}.png', transparent=True)
+
 
 def compare_means(not_know_subset, may_know_subset, to_compare):
     """Takes two subsets of study participants and a category to compare. Returns whether an equal or unequal
@@ -112,5 +145,4 @@ def compare_means(not_know_subset, may_know_subset, to_compare):
     # (https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-the-differences-between-one-tailed-and-two-tailed-tests/) 
     p_value_one_tailed = p_value_two_tailed/2
     # we expect a positive test statistic if mean of not_know_subset is greater than mean of may_know_subset
-    print(equal_var, test_statistic, p_value_one_tailed)
     return [equal_var, test_statistic, p_value_one_tailed]
