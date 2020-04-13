@@ -68,7 +68,7 @@ def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, x
     # as discussed in https://github.com/matplotlib/matplotlib/issues/409
     ax.errorbar(binned_data_not_know['arsenic_ugl_mean'], binned_data_not_know['urine_as_mean'],
                 xerr=binned_data_not_know['arsenic_ugl_sem'], yerr=binned_data_not_know['urine_as_sem'],
-                fmt='ok', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
+                fmt='ok', markersize=10, mfc='k', mec='none', alpha=0.5, ecolor='k', capsize=2, zorder=1)
     ax.errorbar(binned_data_may_know['arsenic_ugl_mean'], binned_data_may_know['urine_as_mean'],
                 xerr=binned_data_may_know['arsenic_ugl_sem'], yerr=binned_data_may_know['urine_as_sem'],
                 fmt='ob', markersize=10, mfc='b', mec='none', ecolor='b', capsize=2, zorder=1)
@@ -114,15 +114,16 @@ def make_histograms(not_know_subset, may_know_subset,
     else:
         ax.set_xlabel(r'Urinary Arsenic ($\mu g/L$)', fontsize=18)
     bins = 15
-    alpha = 0.5
     density = True
     if arsenic_ugl_lower_bound == 0:
         xmax = 500
     else:
         xmax = 2500
     ax.set_xlim([0, xmax])
-    plt.hist(not_know_subset[to_compare], bins, alpha=alpha, color='black', density=density)
-    plt.hist(may_know_subset[to_compare], bins, alpha=alpha, color='blue', density=density)
+    # density='density' to show normalized histograms
+    plt.rcParams['hatch.color'] = 'blue'
+    plt.hist(not_know_subset[to_compare], bins, alpha=0.5, color='black', density=density)
+    plt.hist(may_know_subset[to_compare], bins, facecolor='none', hatch='/', edgecolor='blue', density=density)
     ax.tick_params(axis='x', labelsize=16)
     ax.tick_params(axis='y', labelsize=10)
     plt.savefig(f'plots/{to_compare}_comparison_well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}.png', transparent=True)

@@ -29,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.7372549"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.65445904"
-     inkscape:cx="733.53855"
-     inkscape:cy="507.58267"
+     inkscape:zoom="0.58519132"
+     inkscape:cx="489.44169"
+     inkscape:cy="486.81921"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -60,31 +60,31 @@
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned.png"
        xlink:href="subset_comparison_binned.png"
-       y="-12.486901"
-       x="3.8553591"
-       id="image3732"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3732"
+       x="3.8553591"
+       y="-12.486901" />
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned_inset.png"
        xlink:href="subset_comparison_binned_inset.png"
-       y="-12.486901"
-       x="191.93631"
-       id="image3743"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3743"
+       x="191.8576"
+       y="-12.486901" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="3.8192546"
-       y="1.2622352"
+       y="1.2621697"
        id="text3774"><tspan
          sodipodi:role="line"
          id="tspan3772"
          x="3.8192546"
-         y="1.2622352"
+         y="1.2621697"
          style="stroke-width:0.26458332">a</tspan></text>
     <text
        xml:space="preserve"
@@ -114,21 +114,21 @@
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\urine_as_comparison_well_as_0_to_10.png"
        xlink:href="urine_as_comparison_well_as_0_to_10.png"
-       y="132.46152"
-       x="5.1570997"
-       id="image3726"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3726"
+       x="3.8553591"
+       y="131.85216" />
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\urine_as_comparison_well_as_250_to_100000.png"
        xlink:href="urine_as_comparison_well_as_250_to_100000.png"
-       y="131.85216"
-       x="191.8576"
-       id="image3737"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3737"
+       x="191.8576"
+       y="131.85216" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -161,6 +161,28 @@
          id="tspan47"
          x="333.12497"
          y="167.58391"
-         style="stroke-width:0.26458332"></tspan></text>
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="3.8140869"
+       y="149.21222"
+       id="text3774-9"><tspan
+         sodipodi:role="line"
+         id="tspan3772-6"
+         x="3.8140869"
+         y="149.21222"
+         style="stroke-width:0.26458332">c</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="194.69206"
+       y="151.34645"
+       id="text3774-9-7"><tspan
+         sodipodi:role="line"
+         id="tspan3772-6-4"
+         x="194.69206"
+         y="151.34645"
+         style="stroke-width:0.26458332">d</tspan></text>
   </g>
 </svg>
