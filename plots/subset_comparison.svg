@@ -29,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.79148714"
-     inkscape:cx="821.39672"
-     inkscape:cy="300.53875"
+     inkscape:zoom="0.85589535"
+     inkscape:cx="487.38553"
+     inkscape:cy="301.96903"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -60,21 +60,21 @@
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned.png"
        xlink:href="subset_comparison_binned.png"
-       y="143.08797"
-       x="3.8553591"
-       id="image3732"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3732"
+       x="3.8553591"
+       y="143.08797" />
     <image
        sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\subset_comparison_binned_inset.png"
        xlink:href="subset_comparison_binned_inset.png"
-       y="143.08797"
-       x="191.93631"
-       id="image3743"
-       preserveAspectRatio="none"
+       width="203.2"
        height="152.39999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image3743"
+       x="191.93631"
+       y="143.08797" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"

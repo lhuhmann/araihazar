@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400mm"
+   height="160mm"
+   viewBox="0 0 400 160"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="subset_comparison_histograms.svg"
+   inkscape:export-filename="C:\Users\Britt\GitHub\araihazar\plots\regression_scatterplots.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.7372549"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.63281196"
+     inkscape:cx="888.36238"
+     inkscape:cy="418.84558"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-137)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="3.8192546"
+       y="1.2621697"
+       id="text3774"><tspan
+         sodipodi:role="line"
+         id="tspan3772"
+         x="3.8192546"
+         y="10.917665"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="194.29416"
+       y="3.3912387"
+       id="text3774-2"><tspan
+         sodipodi:role="line"
+         id="tspan3772-4"
+         x="194.29416"
+         y="13.046734"
+         style="stroke-width:0.26458332" /></text>
+    <rect
+       id="rect3722"
+       width="34.275112"
+       height="44.778778"
+       x="29.852516"
+       y="93.007782"
+       style="opacity:0;fill:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none" />
+    <image
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\urine_as_comparison_well_as_0_to_10.png"
+       xlink:href="urine_as_comparison_well_as_0_to_10.png"
+       y="131.85216"
+       x="3.8553591"
+       id="image3726"
+       preserveAspectRatio="none"
+       height="152.39999"
+       width="203.2" />
+    <image
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\urine_as_comparison_well_as_250_to_100000.png"
+       xlink:href="urine_as_comparison_well_as_250_to_100000.png"
+       y="131.85216"
+       x="191.8576"
+       id="image3737"
+       preserveAspectRatio="none"
+       height="152.39999"
+       width="203.2" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="61.854519"
+       y="161.56691"
+       id="text19"><tspan
+         sodipodi:role="line"
+         x="61.854519"
+         y="161.56691"
+         style="font-size:7.76111126px;line-height:0.25;stroke-width:0.26458332"
+         id="tspan21">Primary well arsenic &lt; 10 ug/L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="245.83824"
+       y="160.88376"
+       id="text19-0"><tspan
+         sodipodi:role="line"
+         x="245.83824"
+         y="160.88376"
+         style="font-size:7.76111126px;line-height:0.25;stroke-width:0.26458332"
+         id="tspan21-9">Primary well arsenic &gt; 250 ug/L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="333.12497"
+       y="157.92841"
+       id="text49"><tspan
+         sodipodi:role="line"
+         id="tspan47"
+         x="333.12497"
+         y="167.58391"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="3.8140869"
+       y="149.21222"
+       id="text3774-9"><tspan
+         sodipodi:role="line"
+         id="tspan3772-6"
+         x="3.8140869"
+         y="149.21222"
+         style="stroke-width:0.26458332">a</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="194.69206"
+       y="151.34645"
+       id="text3774-9-7"><tspan
+         sodipodi:role="line"
+         id="tspan3772-6-4"
+         x="194.69206"
+         y="151.34645"
+         style="stroke-width:0.26458332">b</tspan></text>
+  </g>
+</svg>

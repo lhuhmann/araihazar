@@ -57,6 +57,7 @@ def make_subset(data, group_name): # pylint: disable=too-many-return-statements
 
 
 def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, xmax, ymax, tick_spacing):
+    """Binned errorbar plots of the two subsets alongisde the model fit line"""
     # bin both and plot the binned data
     binned_data_may_know = get_binned_data(may_know_subset, 15, ['arsenic_ugl', 'urine_as'])
     binned_data_not_know = get_binned_data(not_know_subset, 15, ['arsenic_ugl', 'urine_as'])
@@ -68,7 +69,7 @@ def plot_group_comparison(results, not_know_subset, may_know_subset, plotname, x
     # as discussed in https://github.com/matplotlib/matplotlib/issues/409
     ax.errorbar(binned_data_not_know['arsenic_ugl_mean'], binned_data_not_know['urine_as_mean'],
                 xerr=binned_data_not_know['arsenic_ugl_sem'], yerr=binned_data_not_know['urine_as_sem'],
-                fmt='ok', markersize=10, mfc='k', mec='none', alpha=0.5, ecolor='k', capsize=2, zorder=1)
+                fmt='ok', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
     ax.errorbar(binned_data_may_know['arsenic_ugl_mean'], binned_data_may_know['urine_as_mean'],
                 xerr=binned_data_may_know['arsenic_ugl_sem'], yerr=binned_data_may_know['urine_as_sem'],
                 fmt='ob', markersize=10, mfc='b', mec='none', ecolor='b', capsize=2, zorder=1)
