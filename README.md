@@ -33,15 +33,15 @@ This code only needs to be run when the underlying data for the data analysis ar
 * Save the individual sources of the people data (age.csv, baseline_urine_as.csv, interview_dates.csv, sex.csv, subject_well_mapping.csv) in the araihazar-data repo in the 'to_clean' directory.
 * Run ingest/clean_people_data.py to clean and combine the data for the 'people' table in the SQL database.
 ** This saves the people data in the araihazar-data repo at 'to_ingest/people.csv'.
-* Ingest well data to SQL database by running 'ingest/ingest_wells.pgsql' on the database, updating the path to point to the correction data location.
-* Ingest people data to SQL database by running 'ingest/ingest_people.pgsql' on the database, updating the path to point to the correction data location.
+* Ingest well data to SQL database by running 'ingest/ingest_wells.pgsql' on the database, updating the path to point to the correct data location.
+* Ingest people data to SQL database by running 'ingest/ingest_people.pgsql' on the database, updating the path to point to the correct data location.
 * Create a database table with distances between pairs of wells by running 'ingest/get_well_dist.pgsql' on the database.
 * Calculate arsenic from selected combinations of neighboring wells using selected queries from 'ingest/get_other_well_arsenic.pgsql'.
-* Extract from the database the data for the data analysis stage by running 'get_data_from_db.pgsql' on the database. Save data to the araihazar-data repo in the 'to_analyze' directory.
+* Extract from the database the data for the analysis stage by running 'get_data_from_db.pgsql' on the database. Save data to the araihazar-data repo in the 'to_analyze' directory.
 
 # Data analysis
 ## Regression Based on Mass Balance
-This code runs linear regressions (based on the mass balance equations) on the observed data from Araihazar, Bangladesh. It then uses the parameters derived from the linear regressions along with other parameters from the scientific literature to solve the mass balance equations for fp, the average fraction of water an individual consumes from their primary well, and fu, the average fraction of water an individual loses via urine, along with their uncertainties.
+This code runs linear regressions (based on the mass balance equations) on the observed data from Araihazar, Bangladesh. It then uses the parameters derived from the linear regressions along with other parameters from the scientific literature to solve the mass balance equations for f<sub>p</sub>, the average fraction of water an individual consumes from their primary well, and f<sub>u</sub>, the average fraction of water an individual loses via urine, along with their uncertainties.
 * The functions in 'run_all.py' set up the input parameters, load the data, and run the analysis.
 * The functions in 'regressions.py' run linear regressions on the input data for two different mass-balance models of water and arsenic consumption and excretion.
 * The functions in 'solve_mass_balance.py' use the input parameters and the parameters from the linear regressions to solve for the estimated fractions of water consumed from different sources and the uncertainties on these fractions, saving the results to csv files.
@@ -52,6 +52,10 @@ This code runs linear regressions (based on the mass balance equations) on the o
 Some study participants were informed of the arsenic concentrations in their primary drinking water wells before their urinary arsenic was tested. We hypothesize that learning their primary well arsenic concentrations may have caused them to alter their behavior. Specifically, we hypothesize that participants with the highest- and lowest-arsenic primary wells who had been informed of their primary well arsenic concentrations will have lower urinary arsenic concentrations than participants who had not been informed. This code tests that hypothesis. 
 ### Running the code
 Before running the code, parameters for the mass balance can be updated in The code can be run with 'python3 run_all.py'.
+## Exploring the effects of different mass balance parameters
+Alongside the observed relationship between primary well arsenic and urinary arsenic, we plot some relationships predicted by the distributed wells model, changing one parameter at a time in the mass balance equation.
+### Running the code
+The code can be run with 'explore_parameter_effects.py'.
 ## Comparison with Argos et al. (2010)
 Uses the estimated fraction of water an individual consumes from their primary well and from other wells to estimate the average amount of arsenic in *all* water consumed by an individual. The output table maps each of the primary well arsenic categories from Argos et al. (first column) to the estimated mean arsenic in all water consumed for an individual with the mean primary well arsenic for that category (second column). 
 ### Running the code
