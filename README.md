@@ -55,7 +55,7 @@ Before running the code, parameters for the mass balance can be updated in The c
 ## Exploring the effects of different mass balance parameters
 Alongside the observed relationship between primary well arsenic and urinary arsenic, we plot some relationships predicted by the distributed wells model, changing one parameter at a time in the mass balance equation.
 ### Running the code
-The code can be run with 'explore_parameter_effects.py'.
+The code can be run with 'python3 explore_parameter_effects.py'.
 ## Comparison with Argos et al. (2010)
 Uses the estimated fraction of water an individual consumes from their primary well and from other wells to estimate the average amount of arsenic in *all* water consumed by an individual. The output table maps each of the primary well arsenic categories from Argos et al. (first column) to the estimated mean arsenic in all water consumed for an individual with the mean primary well arsenic for that category (second column). 
 ### Running the code

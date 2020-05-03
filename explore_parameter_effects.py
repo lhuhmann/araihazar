@@ -9,7 +9,7 @@ from compare_subsets import make_subset
 
 # set parameters
 data = pd.read_csv('../araihazar-data/to_analyze/data_for_regressions.csv')
-group_name = 'did_not_know'
+group_name = 'all'
 data_subset = make_subset(data, group_name)
 numbins = 15
 household_well_as = 'other_as_50m'
@@ -32,9 +32,9 @@ for i in range(len(names)):
                 fmt='o', markersize=10, mfc='k', mec='none', ecolor='k', capsize=2, zorder=1)
     ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*slopes[i] + intercepts[i], 
             color=colors[i], linewidth=3)
-    ax.set_xlim([0, 400])
+    ax.set_xlim([0, 500])
     ax.set_ylim([0, 400])
-    ax.xaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500])
     ax.yaxis.set_ticks([0, 100, 200, 300, 400])
     ax.tick_params(axis='both', labelsize=16)
-    plt.savefig(f'plots/explore_params/{names[i]}.png', dpi=600, transparent=True)
+    plt.savefig(f'plots/explore_params/{group_name}_{names[i]}.png', dpi=600, transparent=True)

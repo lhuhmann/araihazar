@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="explore_regression_parameters_simple.svg"
+   sodipodi:docname="all_explore_regression_parameters_simple.svg"
    inkscape:export-filename="C:\Users\Britt\GitHub\araihazar\plots\regression_scatterplots.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
@@ -138,16 +138,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5175497"
-     inkscape:cx="868.22869"
-     inkscape:cy="1098.2983"
+     inkscape:zoom="0.55048947"
+     inkscape:cx="589.11758"
+     inkscape:cy="860.35668"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="986"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:window-width="1600"
+     inkscape:window-height="1137"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -324,43 +324,46 @@
        d="m 128.89675,-70.449268 13.57595,0.958114"
        id="path6727"
        inkscape:connector-curvature="0" />
+    <a
+       id="a3760">
+      <image
+         sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params\all_reference_case.png"
+         xlink:href="all_reference_case.png"
+         style="fill:none"
+         width="224.38171"
+         height="168.28627"
+         preserveAspectRatio="none"
+         id="image6953"
+         x="0.47519672"
+         y="-30.268211" />
+    </a>
     <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params/reference_case.png"
-       xlink:href="explore_params/reference_case.png"
-       style="fill:none"
-       width="224.38171"
-       height="168.28627"
-       preserveAspectRatio="none"
-       id="image6953"
-       x="0.47519672"
-       y="-30.268211" />
-    <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params/fu=0.5.png"
-       xlink:href="explore_params/fu=0.5.png"
-       width="222.3683"
-       height="166.7762"
-       preserveAspectRatio="none"
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params\all_fu=0.5.png"
+       xlink:href="all_fu=0.5.png"
+       y="-30.268211"
+       x="216.66051"
        id="image6964"
-       x="216.66051"
-       y="-30.268211" />
-    <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params/Mf=64.png"
-       xlink:href="explore_params/Mf=64.png"
-       width="224.38171"
-       height="168.28629"
        preserveAspectRatio="none"
-       id="image6997"
+       height="166.7762"
+       width="222.3683" />
+    <image
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params\all_Mf=64.png"
+       xlink:href="all_Mf=64.png"
+       y="127.57755"
        x="2.3539276"
-       y="127.57755" />
-    <image
-       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params/fp=0.5.png"
-       xlink:href="explore_params/fp=0.5.png"
-       width="223.10167"
-       height="167.32626"
+       id="image6997"
        preserveAspectRatio="none"
-       id="image7008"
+       height="168.28629"
+       width="224.38171" />
+    <image
+       sodipodi:absref="C:\Users\Britt\GitHub\araihazar\plots\explore_params\all_fp=0.5.png"
+       xlink:href="all_fp=0.5.png"
+       y="129.44902"
        x="216.66051"
-       y="129.44902" />
+       id="image7008"
+       preserveAspectRatio="none"
+       height="167.32626"
+       width="223.10167" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58352566px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458815"

@@ -32,7 +32,7 @@ for category, min_val, max_val in zip(categories, min_As, max_As):
     sem_As_water_consumed = (fp*sem_As_primary_well + fo*sem_As_all_wells)/(fp+fo)
     solutions.update({category: (mean_As_water_consumed, sem_As_water_consumed)})
     print(num_subj, mean_As_primary_well, sem_As_primary_well)
-    with open(os.path.abspath('../araihazar-data/analysis_output/argos_table.csv'), "w") as savefile:
+    with open(os.path.abspath(f'../araihazar-data/analysis_output/argos_table_fp={fp}_fo={fo}.csv'), "w") as savefile:
         writer = csv.writer(savefile)
         for row in apply_formatting(solutions).items():
             writer.writerow(row)
