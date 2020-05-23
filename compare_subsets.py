@@ -46,10 +46,14 @@ def make_subset(data, group_name): # pylint: disable=too-many-return-statements
         return data[data['sex'] == 'female']
     if group_name == 'women_did_not_know':
         return data[(data['knew_well_as'] == False) & (data['sex'] == 'female')]
+    if group_name == 'women_may_have_known':
+        return data[(data['knew_well_as'] == True) & (data['sex'] == 'female')]
     if group_name == 'men':
         return data[data['sex'] == 'male']
     if group_name == 'men_did_not_know':
         return data[(data['knew_well_as'] == False) & (data['sex'] == 'male')]
+    if group_name == 'men_may_have_known':
+        return data[(data['knew_well_as'] == True) & (data['sex'] == 'male')]
     if group_name == 'all':
         return data
     assert False, 'Group does not exist'
@@ -91,11 +95,11 @@ def compare_well_and_urine_as_means(not_know_subset, may_know_subset, arsenic_ug
     may_know_subset = may_know_subset[(may_know_subset.arsenic_ugl > arsenic_ugl_lower_bound) &
                                       (may_know_subset.arsenic_ugl < arsenic_ugl_upper_bound)]
     urine_comparison = compare_means(not_know_subset, may_know_subset, 'urine_as')
-    make_histograms(not_know_subset, may_know_subset, 
+    make_histograms(not_know_subset, 'did_not_know', may_know_subset, 'may_have_known', 
                     arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, 
                     'urine_as')
     well_comparison = compare_means(not_know_subset, may_know_subset, 'arsenic_ugl')
-    make_histograms(not_know_subset, may_know_subset, 
+    make_histograms(not_know_subset, 'did_not_know', may_know_subset, 'may_have_known',
                     arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, 
                     'arsenic_ugl')
     with open(os.path.abspath(f'../araihazar-data/analysis_output/well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}_well_and_urine_as_comparison.csv'), "w") as savefile:
@@ -105,7 +109,7 @@ def compare_well_and_urine_as_means(not_know_subset, may_know_subset, arsenic_ug
         writer.writerow(['well water'] + well_comparison)
 
 
-def make_histograms(not_know_subset, may_know_subset, 
+def make_histograms(subset1, subset1_name, subset2, subset2_name,
                     arsenic_ugl_lower_bound, arsenic_ugl_upper_bound, to_compare):
     """Compares histograms for the two subsets of the values in to_compare between the specified bounds."""
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -123,11 +127,11 @@ def make_histograms(not_know_subset, may_know_subset,
     ax.set_xlim([0, xmax])
     # density='density' to show normalized histograms
     plt.rcParams['hatch.color'] = 'blue'
-    plt.hist(not_know_subset[to_compare], bins, alpha=0.5, color='black', density=density)
-    plt.hist(may_know_subset[to_compare], bins, facecolor='none', hatch='/', edgecolor='blue', density=density)
+    plt.hist(subset1[to_compare], bins, alpha=0.5, color='black', density=density)
+    plt.hist(subset2[to_compare], bins, facecolor='none', hatch='/', edgecolor='blue', density=density)
     ax.tick_params(axis='x', labelsize=16)
     ax.tick_params(axis='y', labelsize=10)
-    plt.savefig(f'plots/{to_compare}_comparison_well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}.png', transparent=True)
+    plt.savefig(f'plots/{to_compare}_{subset1_name}_{subset2_name}_comparison_well_as_{arsenic_ugl_lower_bound}_to_{arsenic_ugl_upper_bound}.png', transparent=True)
 
 
 def compare_means(not_know_subset, may_know_subset, to_compare):

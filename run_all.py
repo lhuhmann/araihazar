@@ -41,21 +41,17 @@ def run_many():
     with as many columns of values as there are sets of parameters."""
     # parameters that may change across runs:
     # parameters that go into the mass balance equation and their uncertainties
-    parameters_with_uncertainties = [{'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
+    d = {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
                                       'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 
-                                      'avgAs':(95.2, 1.4)}, 
-                                      {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 
-                                      'avgAs':(95.2, 1.4)},
-                                      {'ff':(0.2, 0.1), 'fc':(0.12, 0.06), 'md':(0.06, 0.03),
-                                      'mb':(0, 0.03), 'Mf':(64, 4), 'Q':(3, 1), 
-                                      'avgAs':(95.2, 1.4)}]
+                                      'avgAs':(95.2, 1.4)}
+    parameters_with_uncertainties = [d, d, d, d, d, d, d, d, d, d]
     parameters_with_uncertainties = [{k:UncertainVal(v[0], v[1]) for k, v in param_dict.items()}   
                                      for param_dict in parameters_with_uncertainties] 
     # which column to use for household well arsenic
-    household_well_as = ['other_as_50m', 'other_as_50m', 'other_as_50m']
+    o = 'other_as_20m'
+    household_well_as = [o, o, o, o, o, o, o, o, o]
     # which subset of the data to look at
-    group_name = ['did_not_know', 'may_have_known', 'all']
+    group_name = ['men_may_have_known']
 
     # parameters that I don't expect to change across runs:
     # full dataset
@@ -68,8 +64,7 @@ def run_many():
     all_household_params = []
     all_data = []
     for params, household, group in zip(parameters_with_uncertainties, household_well_as,
-                                        group_name):
-        print(group)                                
+                                        group_name):                                
         data_with_pred_vals, distributed_results, distributed_params, household_results, \
             household_params = run_one(params, household, group, data, numbins)
         all_distributed_params.append(apply_formatting(distributed_params))
