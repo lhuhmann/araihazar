@@ -5,7 +5,8 @@ from scipy import stats
 from compare_subsets import make_subset, make_histograms
 
 # get subsets by sex
-subset_pairs = [['women', 'men'], ['women_did_not_know', 'men_did_not_know'], ['women_may_have_known', 'men_may_have_known']]
+# subset_pairs = [['women', 'men'], ['women_did_not_know', 'men_did_not_know'], ['women_may_have_known', 'men_may_have_known']]
+subset_pairs = [['women_did_not_know', 'men_did_not_know']]
 data = pd.read_csv('../araihazar-data/to_analyze/data_for_regressions.csv')
 
 for subset_pair in subset_pairs:
@@ -27,10 +28,14 @@ for subset_pair in subset_pairs:
         urine_as[subset] = data_pair[subset].urine_as
         urine_as_variances[subset] = np.var(data_pair[subset].urine_as)
     # compare variances
+    print(well_as[subset_pair[0]].head())
+    print(well_as[subset_pair[1]].head())
     well_as_W, well_as_p = stats.levene(well_as[subset_pair[0]], well_as[subset_pair[1]], center='median')
+    print(well_as_p)
     ur_as_W, ur_as_p = stats.levene(urine_as[subset_pair[0]], urine_as[subset_pair[1]], center='median')
+    print(ur_as_p)
     # make histograms
-    print(well_as[subset_pair[0]])
+    # print(well_as[subset_pair[0]])
     make_histograms(data_pair[subset_pair[0]], subset_pair[0], data_pair[subset_pair[1]], subset_pair[1],  0, 5000, 'arsenic_ugl')
     make_histograms(data_pair[subset_pair[0]], subset_pair[0], data_pair[subset_pair[1]], subset_pair[1], 0, 5000, 'urine_as')
     # save data to table

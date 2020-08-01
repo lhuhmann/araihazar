@@ -4,11 +4,11 @@ import os
 from uncertain_val import UncertainVal
 import sympy as sym
 
-def calculate_parameters(distributed_results, household_results, ext_params, group_name):
+def calculate_parameters(distributed_results, household_results, ext_params, group_name, household_well_as):
     """Calculate parameters for distributed well model and household well model
     and save to csv files."""
     distributed_params = solve_params_distributed(distributed_results, group_name, ext_params)
-    household_params = solve_params_household(household_results, group_name, ext_params)
+    household_params = solve_params_household(household_results, group_name, household_well_as, ext_params)
     return distributed_params, household_params
 
 # adapted function from Jason
@@ -103,11 +103,13 @@ def solve_params_distributed(model, group_name, params):
                 'frac_other_well':frac_other_well}
     # also include the input parameters so they can be referenced alongside the output parmeters
     solutions.update(params)
-    file_name = group_name + '_distributed_solved.csv'
+    # also include info about which cohort
+    solutions.update({'group':group_name})
+    file_name = f'{group_name}_distributed_solved.csv'
     format_and_save_file(file_name, solutions)
     return solutions
 
-def solve_params_household(model, group_name, params):
+def solve_params_household(model, group_name, household_well_as, params):
     """Solve for parameters and uncertainties for distributed well model and save to csv."""
     ff, fc, md, mb, Mf, Q, avgAs, slope_primary, slope_household, intercept = \
         sym.symbols('ff fc md mb Mf Q avgAs slope_primary slope_household intercept')
@@ -120,6 +122,7 @@ def solve_params_household(model, group_name, params):
 
     # solve for fp, fu, fo, fh
     fu = (1 - md - mb)*(1 - ff - fc + Mf/Q/avgAs)/(slope_primary + slope_household + intercept/avgAs)
+    # print(f'fu is{fu}'')
     fp = slope_primary*(1 - ff - fc + Mf/Q/avgAs)/(slope_primary + slope_household + intercept/avgAs)
     fo = intercept*(1 - ff - fc + Mf/Q/avgAs)/(slope_primary*avgAs + slope_household*avgAs + intercept
         ) - Mf/Q/avgAs
@@ -144,8 +147,12 @@ def solve_params_household(model, group_name, params):
                   'frac_household_well': frac_household_well,
                   'frac_other_well':frac_other_well
                  }
+    # also include the input parameters so they can be referenced alongside the output parmeters
     solutions.update(params)
-    file_name = group_name + '_household_solved.csv'
+    # also include info about which cohort
+    solutions.update({'group':group_name})
+    solutions.update({'group':household_well_as})
+    file_name = f'{group_name}_{household_well_as}_household_solved.csv'
     format_and_save_file(file_name, solutions)
     return solutions
 

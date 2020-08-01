@@ -8,15 +8,15 @@ def make_plots(distributed_results, distributed_params, household_results, house
                data_subset, group_name, numbins, household_well_as):
     """Make plots from model results."""
     # scatter plots of individual data points
-    scatter_plot_simple_regress(distributed_results, data_subset, group_name, xmax=600, ymax=1000)
-    scatter_plot_multiple_regress(household_results, data_subset, group_name, household_well_as, xmax=600, ymax=1000)
+    scatter_plot_simple_regress(distributed_results, data_subset, group_name, xmax=900, ymax=1600)
+    scatter_plot_multiple_regress(household_results, data_subset, group_name, household_well_as, xmax=900, ymax=1600)
     # scatter plots of binned data_subset
     binned_data = get_binned_data(data_subset, numbins, ['arsenic_ugl', household_well_as, 'urine_as', 'urine_as_pred_distributed',
                     'urine_as_pred_household'])
     plot_binned_distributed(distributed_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_distributed',
-                400, 400, 'Primary Household Well Arsenic')
+                500, 500, 'Primary Household Well Arsenic')
     plot_binned_household(household_results, binned_data, group_name, 'arsenic_ugl', 'urine_as_pred_household',
-                400, 400, 'Primary Household Well Arsenic')
+                500, 500, 'Primary Household Well Arsenic')
     # area plot of contributions (for distributed model only)
     plot_contributions(data_subset, distributed_params, group_name)
     plot_contributions_percentile(data_subset, distributed_params, group_name)
@@ -37,13 +37,15 @@ def scatter_plot_simple_regress(results, data, group_name, xmax, ymax):
     # switch this out for the above line of code to make a line rather than scatter for the fit
     ax.plot(np.linspace(0, 1000, 100), np.linspace(0, 1000, 100)*results.params[1] + results.params[0], 'r', linewidth=3)
     ax.set_xlim([0, xmax])
-    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500, 600])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500, 600, 700, 800, 900])
     ax.set_ylim([0, ymax])
-    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000])
-    outside_plot_bounds = data[(data.arsenic_ugl > xmax) | (data.urine_as > ymax)]
+    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000, 1200, 1400, 1600])
+    outside_y_axis_bounds = data[data.urine_as > ymax]
+    outside_x_axis_bounds = data[data.arsenic_ugl > xmax]
     # print(outside_plot_bounds.arsenic_ugl)
     # print(outside_plot_bounds.urine_as)
-    print(f'there are {outside_plot_bounds.shape[0]} data points outside the plot bounds')
+    print(f'there are {outside_y_axis_bounds.shape[0]} data points outside the y-axis bounds')
+    print(f'there are {outside_x_axis_bounds.shape[0]} data points outside the x-axis bounds')
     # print(results.pvalues)
     # using latex math formatting according to https://matplotlib.org/tutorials/text/mathtext.html
     ax.add_artist(AnchoredText(
@@ -67,9 +69,9 @@ def scatter_plot_multiple_regress(results, data, group_name, household_well_as, 
     ax.scatter(data.arsenic_ugl, data.urine_as, marker='o', s=15, c='k', alpha=.3, edgecolors='none')
     ax.scatter(data.arsenic_ugl, data['urine_as_pred_household'], marker='o', s=15, c='r', edgecolors='none')
     ax.set_xlim([0, xmax])
-    ax.xaxis.set_ticks([0, 200, 400, 600])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500, 600, 700, 800, 900])
     ax.set_ylim([0, ymax])
-    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000])
+    ax.yaxis.set_ticks([0, 200, 400, 600, 800, 1000, 1200, 1400, 1600])
     ax.add_artist(AnchoredText(
             fr'$R^2 = {results.rsquared:.2f}$' +
             '\n' +
@@ -151,8 +153,8 @@ def plot_binned_distributed(results, binned_data, group_name, xvar, yvar, xmax, 
     #ymax=300
     ax.set_xlim([0, xmax])
     ax.set_ylim([0, ymax])
-    ax.xaxis.set_ticks([0, 100, 200, 300, 400])
-    ax.yaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500])
+    ax.yaxis.set_ticks([0, 100, 200, 300, 400, 500])
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig('plots/' + group_name + '_' + xvar + '_' + yvar + '_binned.png', dpi=600)
 
@@ -169,8 +171,8 @@ def plot_binned_household(results, binned_data, group_name, xvar, yvar, xmax, ym
                 fmt='-o', markersize=10, mfc='r', mec='none', ecolor='r', capsize=2, c='r', linewidth=1)
     ax.set_xlim([0, xmax])
     ax.set_ylim([0, ymax])
-    ax.xaxis.set_ticks([0, 100, 200, 300, 400])
-    ax.yaxis.set_ticks([0, 100, 200, 300, 400])
+    ax.xaxis.set_ticks([0, 100, 200, 300, 400, 500])
+    ax.yaxis.set_ticks([0, 100, 200, 300, 400, 500])
     ax.tick_params(axis='both', labelsize=16)
     plt.savefig('plots/' + group_name + '_' + xvar + '_' + yvar + '_binned.png', dpi=600)
 

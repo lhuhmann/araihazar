@@ -1,6 +1,6 @@
 {
     "python.linting.enabled": true,
-    "python.pythonPath": "/home/britt/.local/share/virtualenvs/araihazar-O8lqRIMM/bin/python",
+    "python.pythonPath": "/usr/bin/python3",
     "python.linting.pylintEnabled": true,
     "python.linting.pycodestyleEnabled": false
 }
