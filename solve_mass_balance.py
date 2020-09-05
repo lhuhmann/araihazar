@@ -70,6 +70,8 @@ def apply_formatting(arg):
     """
     if isinstance(arg, dict):
         return {k:apply_formatting(v) for k, v in arg.items()}
+    elif isinstance(arg, list):
+        return [apply_formatting(v) for v in arg]
     elif isinstance(arg, float):
         return f'{float(arg):.2f}'
     else:
