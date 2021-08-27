@@ -20,7 +20,7 @@ jobs:
         run: pip install black flake8
 
       - name: Run linters
-        uses: wearerequired/lint-action@v1
+        uses: lhuhmann/lint-action@HEAD
         with:
           black: true
           flake8: true
